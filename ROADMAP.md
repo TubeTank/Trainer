@@ -78,7 +78,7 @@ reinem TypeScript + Vite, **kein Framework** (bestätigt).
 | B | Navigation & App-Struktur | Ansichten: Kategorie-Übersicht (Grid mit Icon + Titel + Fortschritt) → Lernkarten-Liste einer Kategorie → Karteikarten-Studiermodus; einfacher View-State ohne Router-Library | ✅ |
 | C | Karteikarten-Interaktion | Flip-Animation (Begriff vorne, Erklärung/Metapher/Beispiel hinten), Swipe links/rechts ("kann ich" / "nochmal üben") mit visuellem Feedback, Tastatur-Alternative für Desktop-Tests | ✅ |
 | D | Lernfortschritt & Persistenz | localStorage: Status pro Karte (neu/gelernt/wiederholen), Fortschrittsbalken pro Kategorie, einfache Gesamt-Statistik | ✅ |
-| E | Quiz-Modus | Multiple-Choice-UI mit Sofort-Feedback; Optionen werden zur Laufzeit aus vorhandenen Kurzerklärungen generiert (richtige Antwort + 3 Distraktoren derselben Kategorie) statt `quizAntworten` als separaten Lerninhalt zu pflegen | ✅ |
+| E | Quiz-Modus | Multiple-Choice-UI mit Sofort-Feedback; Optionen werden zur Laufzeit aus vorhandenen Kurzerklärungen generiert (richtige Antwort + 3 Distraktoren derselben Kategorie) statt `quizAntworten` als separaten Lerninhalt zu pflegen; Begriff wird in jeder Option durch `___` maskiert, damit das Subjekt die Antwort nicht verrät | ✅ |
 | F | Sprachausgabe | Vorlesen-Button pro Karte über die browsereigene Web Speech API (kein neues Framework/Paket nötig) | ✅ |
 | G | PWA / Installierbarkeit | Manifest, Icons, Service Worker, "Zum Home-Bildschirm hinzufügen", Offline-Grundfunktion | ✅ |
 | H | Interaktions-Feinschliff | Streak-Zähler, Abschluss-Badge pro Kategorie, Zufalls-Modus, sanfte Übergangsanimationen | ✅ |
