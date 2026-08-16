@@ -74,6 +74,18 @@ export const SPRACH_LABEL: Record<Sprache, string> = {
   es: "ES",
 };
 
+export const SPRACH_NAME: Record<Sprache, string> = {
+  de: "Deutsch",
+  en: "English",
+  es: "Español",
+};
+
+export const SPRACH_BCP47: Record<Sprache, string> = {
+  de: "de-DE",
+  en: "en-US",
+  es: "es-ES",
+};
+
 export interface UiTexte {
   appTitel: string;
   themaWaehlen: string;
@@ -96,6 +108,10 @@ export interface UiTexte {
   quizErgebnis: (score: number, gesamt: number) => string;
   nochmalVersuchen: string;
   zurueckZurListe: string;
+  vorlesenLabel: string;
+  zufallStarten: string;
+  streakText: (tage: number) => string;
+  kategorieAbgeschlossenLabel: string;
 }
 
 export const UI_TEXTE: Record<Sprache, UiTexte> = {
@@ -121,6 +137,10 @@ export const UI_TEXTE: Record<Sprache, UiTexte> = {
     quizErgebnis: (score, gesamt) => `Du hast ${score} von ${gesamt} richtig`,
     nochmalVersuchen: "Nochmal versuchen",
     zurueckZurListe: "Zurück zur Liste",
+    vorlesenLabel: "Vorlesen",
+    zufallStarten: "🔀 Zufällig starten",
+    streakText: (tage) => `🔥 ${tage} ${tage === 1 ? "Tag" : "Tage"} in Folge`,
+    kategorieAbgeschlossenLabel: "Kategorie abgeschlossen",
   },
   en: {
     appTitel: "Trainer",
@@ -144,6 +164,10 @@ export const UI_TEXTE: Record<Sprache, UiTexte> = {
     quizErgebnis: (score, gesamt) => `You got ${score} of ${gesamt} right`,
     nochmalVersuchen: "Try again",
     zurueckZurListe: "Back to list",
+    vorlesenLabel: "Read aloud",
+    zufallStarten: "🔀 Start shuffled",
+    streakText: (tage) => `🔥 ${tage}-day streak`,
+    kategorieAbgeschlossenLabel: "Category completed",
   },
   es: {
     appTitel: "Trainer",
@@ -167,5 +191,9 @@ export const UI_TEXTE: Record<Sprache, UiTexte> = {
     quizErgebnis: (score, gesamt) => `Acertaste ${score} de ${gesamt}`,
     nochmalVersuchen: "Intentar de nuevo",
     zurueckZurListe: "Volver a la lista",
+    vorlesenLabel: "Leer en voz alta",
+    zufallStarten: "🔀 Empezar al azar",
+    streakText: (tage) => `🔥 Racha de ${tage} ${tage === 1 ? "día" : "días"}`,
+    kategorieAbgeschlossenLabel: "Categoría completada",
   },
 };

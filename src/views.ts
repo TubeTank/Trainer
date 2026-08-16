@@ -1,8 +1,9 @@
 import type { Kategorie, Lernkarte } from "./data/types";
 import { fortschrittFuerKarten, getStatus, type KartenFortschritt } from "./fortschritt";
 import type { QuizFrage } from "./quiz";
-import { kategorieText, lernkarteText, SPRACH_LABEL, UI_TEXTE } from "./sprache";
+import { kategorieText, lernkarteText, SPRACH_LABEL, SPRACH_NAME, UI_TEXTE } from "./sprache";
 import type { Sprache } from "./data/types";
+import { getStreak } from "./streak";
 
 function escapeHtml(value: string): string {
   return value
@@ -31,7 +32,7 @@ function renderSprachSchalter(sprache: Sprache): string {
   const buttons = sprachen
     .map((eintrag) => {
       const aktiv = eintrag === sprache ? " sprach-button--aktiv" : "";
-      return `<button class="sprach-button${aktiv}" type="button" data-action="set-sprache" data-sprache="${eintrag}">${SPRACH_LABEL[eintrag]}</button>`;
+      return `<button class="sprach-button${aktiv}" type="button" data-action="set-sprache" data-sprache="${eintrag}" aria-label="${escapeHtml(SPRACH_NAME[eintrag])}" aria-pressed="${eintrag === sprache}">${SPRACH_LABEL[eintrag]}</button>`;
     })
     .join("");
   return `<div class="sprach-schalter">${buttons}</div>`;
@@ -50,6 +51,7 @@ export function renderKategorienView(
   const texte = UI_TEXTE[sprache];
   const sortiert = [...kategorien].sort((a, b) => a.reihenfolge - b.reihenfolge);
   const gesamtFortschritt = fortschrittFuerKarten(lernkarten.map((karte) => karte.id));
+  const streak = getStreak();
 
   const items = sortiert
     .map((kategorie) => {
@@ -58,8 +60,10 @@ export function renderKategorienView(
         .filter((karte) => karte.kategorieId === kategorie.id)
         .map((karte) => karte.id);
       const fortschritt = fortschrittFuerKarten(karteIds);
+      const abgeschlossen = fortschritt.gesamt > 0 && fortschritt.gelernt === fortschritt.gesamt;
       return `
         <button class="kategorie-card" type="button" data-action="open-kategorie" data-kategorie-id="${escapeHtml(kategorie.id)}">
+          ${abgeschlossen ? `<span class="kategorie-card__abzeichen" role="img" aria-label="${escapeHtml(texte.kategorieAbgeschlossenLabel)}">🏆</span>` : ""}
           <span class="kategorie-card__icon">${escapeHtml(kategorie.icon ?? "📘")}</span>
           <span class="kategorie-card__titel">${escapeHtml(kategorieTexte.titel)}</span>
           <span class="kategorie-card__anzahl">${texte.gelerntAnzahl(fortschritt.gelernt, fortschritt.gesamt)}</span>
@@ -75,6 +79,7 @@ export function renderKategorienView(
       <h1>${escapeHtml(texte.appTitel)}</h1>
       <p>${escapeHtml(texte.themaWaehlen)}</p>
       <p class="gesamt-fortschritt">${escapeHtml(texte.gesamtFortschritt(gesamtFortschritt.gelernt, gesamtFortschritt.gesamt))}</p>
+      ${streak > 0 ? `<p class="streak-anzeige">${escapeHtml(texte.streakText(streak))}</p>` : ""}
     </header>
     <main class="app-main">
       <div class="kategorie-grid">${items}</div>
@@ -120,6 +125,9 @@ export function renderLernkartenListeView(
       <button class="primary-button" type="button" data-action="open-karte" data-kategorie-id="${escapeHtml(kategorie.id)}" data-index="0">
         ${escapeHtml(texte.karteikartenStarten)}
       </button>
+      <button class="outline-button" type="button" data-action="start-zufall" data-kategorie-id="${escapeHtml(kategorie.id)}">
+        ${escapeHtml(texte.zufallStarten)}
+      </button>
       <button class="outline-button" type="button" data-action="start-quiz" data-kategorie-id="${escapeHtml(kategorie.id)}">
         ${escapeHtml(texte.quizStarten)}
       </button>
@@ -146,7 +154,10 @@ export function renderKarteView(
   return `
     <header class="app-header app-header--sub">
       <button class="back-button" type="button" data-action="back-to-lernkarten" data-kategorie-id="${escapeHtml(kategorie.id)}">← ${escapeHtml(kategorieTexte.titel)}</button>
-      <p class="karte-zaehler">${zaehler}</p>
+      <div class="karte-header-zeile">
+        <p class="karte-zaehler">${zaehler}</p>
+        <button class="vorlesen-button" type="button" data-action="karte-vorlesen" data-kategorie-id="${escapeHtml(kategorie.id)}" data-index="${index}" aria-label="${escapeHtml(texte.vorlesenLabel)}">🔊</button>
+      </div>
     </header>
     <main class="app-main app-main--karte">
       <div class="karte-wrapper" data-flipped="${flipped}">

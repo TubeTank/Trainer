@@ -1,12 +1,15 @@
 import "./styles/base.css";
 import "./styles/app.css";
 import { kategorien, lernkarten, validiereLerndaten } from "./data";
-import type { Sprache } from "./data/types";
+import type { Lernkarte, Sprache } from "./data/types";
 import { setStatus } from "./fortschritt";
 import { attachKarteInteraktion, setFlipped } from "./kartenInteraktion";
 import { erzeugeQuizFragen, type QuizFrage } from "./quiz";
 import { getCurrentRoute, navigate } from "./router";
-import { getSprache, setSprache } from "./sprache";
+import { getSprache, lernkarteText, setSprache } from "./sprache";
+import { vorlesen, vorlesenStoppen } from "./sprachausgabe";
+import { aktualisiereStreak } from "./streak";
+import { mische } from "./util";
 import {
   renderKarteView,
   renderKategorienView,
@@ -24,6 +27,8 @@ if (!validierung.gueltig) {
   );
 }
 
+aktualisiereStreak();
+
 if (import.meta.env.PROD && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
@@ -36,6 +41,9 @@ const app = document.querySelector<HTMLDivElement>("#app");
 
 let flipped = false;
 let aktuelleKarteKey = "";
+
+let zufallsKategorieId: string | null = null;
+let zufallsKarten: Lernkarte[] = [];
 
 interface QuizState {
   kategorieId: string;
@@ -50,6 +58,8 @@ let quizState: QuizState | null = null;
 
 function render(): void {
   if (!app) return;
+
+  vorlesenStoppen();
 
   const route = getCurrentRoute();
   const sprache = getSprache();
@@ -104,21 +114,22 @@ function render(): void {
     return;
   }
 
-  const index = ((route.index % karten.length) + karten.length) % karten.length;
+  const studienKarten = kategorie.id === zufallsKategorieId ? zufallsKarten : karten;
+  const index = ((route.index % studienKarten.length) + studienKarten.length) % studienKarten.length;
   const key = `${kategorie.id}:${index}`;
   if (key !== aktuelleKarteKey) {
     flipped = false;
     aktuelleKarteKey = key;
   }
 
-  app.innerHTML = renderKarteView(kategorie, karten, index, flipped, sprache);
+  app.innerHTML = renderKarteView(kategorie, studienKarten, index, flipped, sprache);
   attachKarteInteraktion(app, {
     onFlip: () => {
       flipped = !flipped;
       setFlipped(app, flipped);
     },
     onAdvance: (urteil) => {
-      setStatus(karten[index].id, urteil === "kenne" ? "gelernt" : "wiederholen");
+      setStatus(studienKarten[index].id, urteil === "kenne" ? "gelernt" : "wiederholen");
       navigate({ view: "karte", kategorieId: kategorie.id, index: index + 1 });
     },
     onZurueck: () => {
@@ -135,18 +146,43 @@ app?.addEventListener("click", (event) => {
 
   switch (action) {
     case "open-kategorie":
+      zufallsKategorieId = null;
       if (kategorieId) navigate({ view: "lernkarten", kategorieId });
       break;
     case "open-karte":
+      zufallsKategorieId = null;
       if (kategorieId && index !== undefined) {
         navigate({ view: "karte", kategorieId, index: Number(index) });
       }
       break;
+    case "start-zufall":
+      if (kategorieId) {
+        const karten = lernkarten.filter((karte) => karte.kategorieId === kategorieId);
+        zufallsKategorieId = kategorieId;
+        zufallsKarten = mische(karten);
+        navigate({ view: "karte", kategorieId, index: 0 });
+      }
+      break;
     case "back-to-kategorien":
+      zufallsKategorieId = null;
       navigate({ view: "kategorien" });
       break;
     case "back-to-lernkarten":
+      zufallsKategorieId = null;
       if (kategorieId) navigate({ view: "lernkarten", kategorieId });
+      break;
+    case "karte-vorlesen":
+      if (kategorieId && index !== undefined) {
+        const kategorie = kategorien.find((eintrag) => eintrag.id === kategorieId);
+        const karten = lernkarten.filter((karte) => karte.kategorieId === kategorieId);
+        const studienKarten = kategorieId === zufallsKategorieId ? zufallsKarten : karten;
+        const karte = studienKarten[Number(index)];
+        if (kategorie && karte) {
+          const sprache = getSprache();
+          const texte = lernkarteText(karte, sprache);
+          vorlesen([texte.begriff, texte.kurzerklaerung, texte.erklaerung, texte.beispiel], sprache);
+        }
+      }
       break;
     case "start-quiz":
       quizState = null;

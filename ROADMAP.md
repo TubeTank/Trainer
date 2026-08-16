@@ -79,10 +79,10 @@ reinem TypeScript + Vite, **kein Framework** (bestätigt).
 | C | Karteikarten-Interaktion | Flip-Animation (Begriff vorne, Erklärung/Metapher/Beispiel hinten), Swipe links/rechts ("kann ich" / "nochmal üben") mit visuellem Feedback, Tastatur-Alternative für Desktop-Tests | ✅ |
 | D | Lernfortschritt & Persistenz | localStorage: Status pro Karte (neu/gelernt/wiederholen), Fortschrittsbalken pro Kategorie, einfache Gesamt-Statistik | ✅ |
 | E | Quiz-Modus | Multiple-Choice-UI mit Sofort-Feedback; Optionen werden zur Laufzeit aus vorhandenen Kurzerklärungen generiert (richtige Antwort + 3 Distraktoren derselben Kategorie) statt `quizAntworten` als separaten Lerninhalt zu pflegen | ✅ |
-| F | Sprachausgabe | Vorlesen-Button pro Karte über die browsereigene Web Speech API (kein neues Framework/Paket nötig) | ⏳ |
+| F | Sprachausgabe | Vorlesen-Button pro Karte über die browsereigene Web Speech API (kein neues Framework/Paket nötig) | ✅ |
 | G | PWA / Installierbarkeit | Manifest, Icons, Service Worker, "Zum Home-Bildschirm hinzufügen", Offline-Grundfunktion | ✅ |
-| H | Interaktions-Feinschliff | Streak-Zähler, Abschluss-Badge pro Kategorie, Zufalls-Modus, sanfte Übergangsanimationen | ⏳ |
-| I | Politur & Barrierefreiheit | Kontrastprüfung Dark Mode, Fokus-States, Test auf echtem Handy-Viewport, Lighthouse-Check | ⏳ |
+| H | Interaktions-Feinschliff | Streak-Zähler, Abschluss-Badge pro Kategorie, Zufalls-Modus, sanfte Übergangsanimationen | ✅ |
+| I | Politur & Barrierefreiheit | Kontrastprüfung Dark Mode, Fokus-States, Test auf echtem Handy-Viewport, Lighthouse-Check | ✅ |
 | J | Mehrsprachigkeit (DE/EN/ES) | UI-Texte und alle 156 Lernkarten + 17 Kategorien um Englisch/Spanisch ergänzt (additiv über `uebersetzungen`, Deutsch bleibt Basissprache), Sprachumschalter in der Kategorie-Übersicht, Auswahl in localStorage gespeichert | ✅ |
 
 ## Arbeitsweise (App-Bauplan)
