@@ -1,6 +1,8 @@
 import "./styles/base.css";
 import "./styles/app.css";
 import { kategorien, lernkarten, validiereLerndaten } from "./data";
+import { setStatus } from "./fortschritt";
+import { attachKarteInteraktion, setFlipped } from "./kartenInteraktion";
 import { getCurrentRoute, navigate } from "./router";
 import { renderKarteView, renderKategorienView, renderLernkartenListeView } from "./views";
 
@@ -14,6 +16,9 @@ if (!validierung.gueltig) {
 }
 
 const app = document.querySelector<HTMLDivElement>("#app");
+
+let flipped = false;
+let aktuelleKarteKey = "";
 
 function render(): void {
   if (!app) return;
@@ -39,7 +44,26 @@ function render(): void {
   }
 
   const index = ((route.index % karten.length) + karten.length) % karten.length;
-  app.innerHTML = renderKarteView(kategorie, karten, index);
+  const key = `${kategorie.id}:${index}`;
+  if (key !== aktuelleKarteKey) {
+    flipped = false;
+    aktuelleKarteKey = key;
+  }
+
+  app.innerHTML = renderKarteView(kategorie, karten, index, flipped);
+  attachKarteInteraktion(app, {
+    onFlip: () => {
+      flipped = !flipped;
+      setFlipped(app, flipped);
+    },
+    onAdvance: (urteil) => {
+      setStatus(karten[index].id, urteil === "kenne" ? "gelernt" : "wiederholen");
+      navigate({ view: "karte", kategorieId: kategorie.id, index: index + 1 });
+    },
+    onZurueck: () => {
+      navigate({ view: "karte", kategorieId: kategorie.id, index: index - 1 });
+    },
+  });
 }
 
 app?.addEventListener("click", (event) => {
@@ -63,16 +87,24 @@ app?.addEventListener("click", (event) => {
     case "back-to-lernkarten":
       if (kategorieId) navigate({ view: "lernkarten", kategorieId });
       break;
-    case "karte-prev":
-      if (kategorieId && index !== undefined) {
-        navigate({ view: "karte", kategorieId, index: Number(index) - 1 });
-      }
-      break;
-    case "karte-next":
-      if (kategorieId && index !== undefined) {
-        navigate({ view: "karte", kategorieId, index: Number(index) + 1 });
-      }
-      break;
+  }
+});
+
+window.addEventListener("keydown", (event) => {
+  const route = getCurrentRoute();
+  if (route.view !== "karte") return;
+
+  if (event.key === "ArrowRight") {
+    event.preventDefault();
+    navigate({ view: "karte", kategorieId: route.kategorieId, index: route.index + 1 });
+  } else if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    navigate({ view: "karte", kategorieId: route.kategorieId, index: route.index - 1 });
+  } else if (event.key === " " || event.key === "Enter") {
+    event.preventDefault();
+    if (!app) return;
+    flipped = !flipped;
+    setFlipped(app, flipped);
   }
 });
 

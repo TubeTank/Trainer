@@ -83,6 +83,55 @@
   font-size: 0.8rem;
 }
 
+.gesamt-fortschritt {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+}
+
+.gesamt-fortschritt--links {
+  text-align: left;
+}
+
+.fortschritt-balken {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-border);
+  overflow: hidden;
+  margin-top: var(--space-1);
+}
+
+.fortschritt-balken__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.fortschritt-balken__fill--gelernt {
+  background: var(--color-success);
+  z-index: 2;
+}
+
+.fortschritt-balken__fill--wiederholen {
+  background: var(--color-warning);
+  z-index: 1;
+}
+
+.lernkarte-listitem__status {
+  margin-left: auto;
+  font-size: 1rem;
+}
+
+.karte-status-pill {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  font-size: 1.1rem;
+}
+
 .primary-button {
   display: block;
   width: 100%;
@@ -136,12 +185,121 @@
   font-size: 0.85rem;
 }
 
-.lernkarte {
+.app-main--karte {
+  display: flex;
+  flex-direction: column;
+}
+
+.karte-wrapper {
+  position: relative;
+  perspective: 1400px;
+  touch-action: pan-y;
+  margin-bottom: var(--space-4);
+  will-change: transform;
+}
+
+.karte-swipe-label {
+  position: absolute;
+  top: var(--space-4);
+  z-index: 2;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.karte-swipe-label--kenne {
+  right: var(--space-4);
+  background: var(--color-success);
+  color: #0b1f16;
+}
+
+.karte-swipe-label--ueben {
+  left: var(--space-4);
+  background: var(--color-warning);
+  color: #241a02;
+}
+
+.karte-flip {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+
+.karte-wrapper[data-flipped="true"] .karte-flip {
+  transform: rotateY(180deg);
+}
+
+.karte-face {
+  position: relative;
+  grid-area: 1 / 1;
+  min-height: 220px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  margin-bottom: var(--space-4);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.karte-face--front {
+  align-items: center;
+  text-align: center;
+}
+
+.karte-face--back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+}
+
+.karte-hinweis {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.karte-aktionen {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.urteil-button {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+}
+
+.urteil-button--kenne {
+  border-color: var(--color-success);
+}
+
+.urteil-button--ueben {
+  border-color: var(--color-warning);
+}
+
+.karte-zurueck-link {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: var(--space-2);
 }
 
 .lernkarte__icon {
@@ -191,19 +349,3 @@
   overflow-x: auto;
 }
 
-.karte-nav {
-  display: flex;
-  gap: var(--space-3);
-}
-
-.secondary-button {
-  flex: 1;
-  background: var(--color-surface-raised);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
-  font-size: 0.95rem;
-  font-family: inherit;
-  cursor: pointer;
-}
