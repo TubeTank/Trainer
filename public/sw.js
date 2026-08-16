@@ -1,5 +1,5 @@
 const CACHE_NAME = "trainer-cache-v1";
-const APP_SHELL = ["/", "/index.html", "/manifest.webmanifest"];
+const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
