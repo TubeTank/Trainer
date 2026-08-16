@@ -18,6 +18,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "🖥️",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-extension", "lk-workspace"],
+    uebersetzungen: {
+      en: {
+        begriff: "VS Code (editor)",
+        kurzerklaerung:
+          "VS Code is a free program for writing and editing program code.",
+        erklaerung:
+          "VS Code is like a well-equipped workbench for programmers: it displays code clearly, highlights errors in color, and can be extended with tools for almost any programming language. Unlike a plain text editor, it actually “understands” the code and actively helps while you write.",
+        beispiel:
+          "A trainee developer opens her project folder in VS Code and sees the file list on the left, the code in the middle, and a built-in terminal for commands at the bottom.",
+        wannVerwendet:
+          "Used in almost every coding session – it is the central work environment where code is written, read, and run.",
+      },
+      es: {
+        begriff: "VS Code (editor)",
+        kurzerklaerung:
+          "VS Code es un programa gratuito para escribir y editar código.",
+        erklaerung:
+          "VS Code es como un banco de trabajo bien equipado para programadores: muestra el código de forma clara, resalta los errores en color y se puede ampliar con herramientas para casi cualquier lenguaje de programación. A diferencia de un editor de texto simple, realmente “entiende” el código y ayuda activamente mientras se escribe.",
+        beispiel:
+          "Una desarrolladora principiante abre la carpeta de su proyecto en VS Code y ve la lista de archivos a la izquierda, el código en el centro y una terminal integrada para comandos en la parte inferior.",
+        wannVerwendet:
+          "Se usa prácticamente en cada sesión de programación: es el entorno de trabajo central donde se escribe, se lee y se ejecuta el código.",
+      },
+    },
   },
   {
     id: "lk-extension",
@@ -34,6 +58,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "🧩",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-vscode", "lk-linter", "lk-formatter"],
+    uebersetzungen: {
+      en: {
+        begriff: "Extension (editor add-on)",
+        kurzerklaerung:
+          "An extension is an add-on module that gives the editor new features.",
+        erklaerung:
+          "Extensions are like apps on a smartphone: the editor can already do a lot on its own, but installing individual extensions gives it specific new abilities – such as support for a particular programming language or a new color theme.",
+        beispiel:
+          "A developer installs the “Prettier” extension so his code is automatically formatted neatly whenever he saves it.",
+        wannVerwendet:
+          "When setting up a new computer, or whenever a project needs extra support, for example for a new language or tool.",
+      },
+      es: {
+        begriff: "Extensión (complemento del editor)",
+        kurzerklaerung:
+          "Una extensión es un módulo adicional que añade nuevas funciones al editor.",
+        erklaerung:
+          "Las extensiones son como las apps de un smartphone: el editor ya puede hacer mucho por sí solo, pero al instalar extensiones concretas obtiene capacidades nuevas y específicas, como soporte para un lenguaje de programación determinado o un nuevo esquema de colores.",
+        beispiel:
+          "Un desarrollador instala la extensión “Prettier” para que su código se formatee automáticamente de forma limpia cada vez que lo guarda.",
+        wannVerwendet:
+          "Al configurar un ordenador nuevo o cuando un proyecto necesita soporte adicional, por ejemplo para un nuevo lenguaje o una nueva herramienta.",
+      },
+    },
   },
   {
     id: "lk-linter",
@@ -51,6 +99,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "🔍",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-formatter", "lk-debugger"],
+    uebersetzungen: {
+      en: {
+        begriff: "Linter",
+        kurzerklaerung:
+          "A linter automatically checks code for errors, suspicious patterns, and style violations without running it.",
+        erklaerung:
+          "A linter is like a proofreader for program code: it reads through the text and flags suspicious spots – such as an unused variable or a likely typo – before the program is even started. This catches many problems before they turn into real bugs.",
+        beispiel:
+          "The linter highlights a line in yellow because a variable is defined but never used – a sign of forgotten or unnecessary code.",
+        wannVerwendet:
+          "Usually runs automatically in the background while writing code, and often also as a check before changes are committed.",
+      },
+      es: {
+        begriff: "Linter",
+        kurzerklaerung:
+          "Un linter revisa el código automáticamente en busca de errores, patrones sospechosos y violaciones de estilo, sin llegar a ejecutarlo.",
+        erklaerung:
+          "Un linter es como un corrector de textos para el código: lee el texto y marca los puntos sospechosos, por ejemplo una variable sin usar o una probable errata, antes incluso de que el programa se ejecute. Así se detectan muchos problemas antes de que se conviertan en errores reales.",
+        beispiel:
+          "El linter marca una línea en amarillo porque se define una variable que nunca se utiliza, una señal de código olvidado o innecesario.",
+        wannVerwendet:
+          "Suele ejecutarse automáticamente en segundo plano mientras se escribe código, y a menudo también como paso de verificación antes de confirmar los cambios.",
+      },
+    },
   },
   {
     id: "lk-formatter",
@@ -68,6 +140,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "🧹",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-linter", "lk-extension"],
+    uebersetzungen: {
+      en: {
+        begriff: "Formatter (code formatting)",
+        kurzerklaerung:
+          "A formatter automatically gives code a consistent, easy-to-read appearance.",
+        erklaerung:
+          "A formatter is like an automatic text cleanup that standardizes indentation, spacing, and line breaks without changing the content. This way the code always looks equally tidy no matter who wrote it, which makes it much easier to read as a team.",
+        beispiel:
+          "When a file is saved, the formatter automatically aligns all the indentation and applies consistent quotation marks, without changing how the code works.",
+        wannVerwendet:
+          "Usually runs automatically when saving a file, or as a check before committing, to keep the code style consistent across the whole project.",
+      },
+      es: {
+        begriff: "Formateador (formato de código)",
+        kurzerklaerung:
+          "Un formateador da al código automáticamente un aspecto uniforme y fácil de leer.",
+        erklaerung:
+          "Un formateador es como una corrección automática de texto que unifica sangrías, espacios y saltos de línea sin cambiar el contenido. Así el código siempre se ve igual de ordenado, sin importar quién lo haya escrito, lo que facilita mucho su lectura en equipo.",
+        beispiel:
+          "Al guardar un archivo, el formateador alinea automáticamente todas las sangrías y aplica comillas uniformes, sin que cambie el funcionamiento del código.",
+        wannVerwendet:
+          "Normalmente se ejecuta automáticamente al guardar un archivo, o como paso de verificación antes de confirmar los cambios, para mantener un estilo de código uniforme en todo el proyecto.",
+      },
+    },
   },
   {
     id: "lk-debugger",
@@ -85,6 +181,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "🐞",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-breakpoint", "lk-linter"],
+    uebersetzungen: {
+      en: {
+        begriff: "Debugger",
+        kurzerklaerung:
+          "A debugger is a tool that lets you run a program step by step to find errors.",
+        erklaerung:
+          "A debugger is like a slow-motion function for a running program: instead of letting everything play out at once, you can pause at specific points and look closely at what values the variables currently hold. This makes it possible to track down, step by step, exactly where something goes wrong.",
+        beispiel:
+          "A developer starts the debugger because a calculation is producing the wrong result, and watches live how a number changes with each calculation step.",
+        wannVerwendet:
+          "When an error can't be found just by reading the code and you need to trace the exact program flow live.",
+      },
+      es: {
+        begriff: "Depurador (debugger)",
+        kurzerklaerung:
+          "Un depurador es una herramienta que permite ejecutar un programa paso a paso para encontrar errores.",
+        erklaerung:
+          "Un depurador es como una función de cámara lenta para un programa en ejecución: en lugar de dejar que todo transcurra de golpe, se puede pausar en puntos concretos y observar exactamente qué valores tienen las variables en ese momento. Así se puede averiguar, paso a paso, en qué punto exacto algo falla.",
+        beispiel:
+          "Un desarrollador inicia el depurador porque un cálculo da un resultado incorrecto, y observa en vivo cómo cambia un número en cada paso del cálculo.",
+        wannVerwendet:
+          "Cuando un error no se puede encontrar solo leyendo el código y es necesario seguir en vivo el flujo exacto del programa.",
+      },
+    },
   },
   {
     id: "lk-breakpoint",
@@ -101,6 +221,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "🛑",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-debugger"],
+    uebersetzungen: {
+      en: {
+        begriff: "Breakpoint",
+        kurzerklaerung:
+          "A breakpoint is a marked spot in the code where the program automatically pauses during debugging.",
+        erklaerung:
+          "A breakpoint works like a stop sign at a specific point on the road: as soon as the program reaches it during debugging, it stops, and you can calmly look around to see what values are currently present before continuing on.",
+        beispiel:
+          "A developer sets a breakpoint right before a suspicious calculation, so the program automatically pauses there and he can check the values of the variables involved.",
+        wannVerwendet:
+          "When hunting down a specific bug and you want to see the program's exact current state at one particular point in the code.",
+      },
+      es: {
+        begriff: "Breakpoint (punto de interrupción)",
+        kurzerklaerung:
+          "Un breakpoint es un punto marcado en el código donde el programa se detiene automáticamente durante la depuración.",
+        erklaerung:
+          "Un breakpoint funciona como una señal de stop en un punto concreto de la carretera: en cuanto el programa llega hasta ahí durante la depuración, se detiene, y se puede observar con calma qué valores hay en ese momento antes de continuar.",
+        beispiel:
+          "Un desarrollador coloca un breakpoint justo antes de un cálculo sospechoso, para que el programa se detenga automáticamente ahí y pueda comprobar el valor de las variables implicadas.",
+        wannVerwendet:
+          "Al buscar un error de forma específica, cuando se quiere ver el estado exacto del programa en un punto concreto del código.",
+      },
+    },
   },
   {
     id: "lk-code-vervollstaendigung",
@@ -117,6 +261,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "💡",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-vscode", "lk-snippet"],
+    uebersetzungen: {
+      en: {
+        begriff: "Code Completion (IntelliSense)",
+        kurzerklaerung:
+          "Code completion automatically suggests matching continuations and commands as you type.",
+        erklaerung:
+          "Code completion is like the text suggestions on a smartphone: as you type, a list of likely next words or commands appears, and you can simply pick one instead of typing everything by hand. This saves time and prevents typos in long command names.",
+        beispiel:
+          "As soon as a developer types the first letters of a function name, a list of matching suggestions appears, along with a short explanation of what the function does.",
+        wannVerwendet:
+          "Constantly while programming – it supports virtually every line of code that gets written.",
+      },
+      es: {
+        begriff: "Autocompletado de código (IntelliSense)",
+        kurzerklaerung:
+          "El autocompletado sugiere automáticamente continuaciones y comandos adecuados mientras se escribe.",
+        erklaerung:
+          "El autocompletado de código es como las sugerencias de texto de un smartphone: mientras se escribe, aparece una lista de palabras o comandos probables entre los que se puede elegir, en lugar de teclearlo todo a mano. Esto ahorra tiempo y evita errores tipográficos en nombres de comandos largos.",
+        beispiel:
+          "En cuanto un desarrollador teclea las primeras letras del nombre de una función, aparece una lista de sugerencias adecuadas junto con una breve explicación de lo que hace la función.",
+        wannVerwendet:
+          "Constantemente mientras se programa: apoya prácticamente cada línea de código que se escribe.",
+      },
+    },
   },
   {
     id: "lk-workspace",
@@ -133,6 +301,30 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "⚙️",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-vscode", "lk-extension"],
+    uebersetzungen: {
+      en: {
+        begriff: "Workspace settings",
+        kurzerklaerung:
+          "Workspace settings are configurations that apply only to a specific project in the editor.",
+        erklaerung:
+          "Workspace settings are like individual house rules for a single room instead of the whole apartment: they apply only within a particular project folder and, if needed, override the general editor settings there. This way, every project can have its own rules, such as which formatter is used.",
+        beispiel:
+          "A team sets in the workspace settings that this project always uses two spaces instead of tabs for indentation, so that everyone on the team uses the same style.",
+        wannVerwendet:
+          "When setting up a new project, or when a team wants to agree on shared, project-specific rules.",
+      },
+      es: {
+        begriff: "Configuración del espacio de trabajo (workspace)",
+        kurzerklaerung:
+          "La configuración del espacio de trabajo son ajustes que solo se aplican a un proyecto concreto en el editor.",
+        erklaerung:
+          "La configuración del espacio de trabajo es como reglas particulares para una sola habitación en lugar de para toda la vivienda: solo se aplican dentro de una carpeta de proyecto determinada y, si es necesario, allí sobrescriben la configuración general del editor. Así, cada proyecto puede tener sus propias normas, por ejemplo qué formateador se utiliza.",
+        beispiel:
+          "Un equipo define en la configuración del espacio de trabajo que en este proyecto siempre se usan dos espacios en lugar de tabulaciones para la sangría, de modo que todos los miembros del equipo usen el mismo estilo.",
+        wannVerwendet:
+          "Al configurar un proyecto nuevo o cuando un equipo quiere acordar reglas comunes específicas del proyecto.",
+      },
+    },
   },
   {
     id: "lk-snippet",
@@ -149,5 +341,29 @@ export const entwicklungswerkzeugeLernkarten: Lernkarte[] = [
     icon: "✂️",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-code-vervollstaendigung", "lk-vscode"],
+    uebersetzungen: {
+      en: {
+        begriff: "Snippet",
+        kurzerklaerung:
+          "A snippet is a ready-made piece of code that can be inserted with just a few keystrokes.",
+        erklaerung:
+          "A snippet is like a canned reply in an email program: instead of typing a frequently recurring phrase from scratch every time, you call it up with a short shortcut and just adjust the details. This saves time on code patterns that come up again and again.",
+        beispiel:
+          "A developer types the shortcut “forloop” and the editor automatically inserts the complete basic structure of a loop, leaving only the details to be adjusted.",
+        wannVerwendet:
+          "For recurring, well-known code structures that you don't want to write from scratch every time.",
+      },
+      es: {
+        begriff: "Snippet (fragmento de código)",
+        kurzerklaerung:
+          "Un snippet es un bloque de código ya preparado que se puede insertar con solo unas pocas teclas.",
+        erklaerung:
+          "Un snippet es como una respuesta predefinida en un programa de correo: en lugar de escribir cada vez desde cero una frase que se repite con frecuencia, se llama con un atajo corto y solo se ajustan los detalles. Esto ahorra tiempo en patrones de código que aparecen una y otra vez.",
+        beispiel:
+          "Un desarrollador teclea el atajo “forloop” y el editor inserta automáticamente toda la estructura básica de un bucle, quedando solo por ajustar los detalles.",
+        wannVerwendet:
+          "Para estructuras de código conocidas y recurrentes que no se quieren escribir desde cero cada vez.",
+      },
+    },
   },
 ];

@@ -1,10 +1,12 @@
 import "./styles/base.css";
 import "./styles/app.css";
 import { kategorien, lernkarten, validiereLerndaten } from "./data";
+import type { Sprache } from "./data/types";
 import { setStatus } from "./fortschritt";
 import { attachKarteInteraktion, setFlipped } from "./kartenInteraktion";
 import { erzeugeQuizFragen, type QuizFrage } from "./quiz";
 import { getCurrentRoute, navigate } from "./router";
+import { getSprache, setSprache } from "./sprache";
 import {
   renderKarteView,
   renderKategorienView,
@@ -29,6 +31,7 @@ let aktuelleKarteKey = "";
 
 interface QuizState {
   kategorieId: string;
+  sprache: Sprache;
   fragen: QuizFrage[];
   index: number;
   score: number;
@@ -41,9 +44,10 @@ function render(): void {
   if (!app) return;
 
   const route = getCurrentRoute();
+  const sprache = getSprache();
 
   if (route.view === "kategorien") {
-    app.innerHTML = renderKategorienView(kategorien, lernkarten);
+    app.innerHTML = renderKategorienView(kategorien, lernkarten, sprache);
     return;
   }
 
@@ -56,15 +60,16 @@ function render(): void {
   const karten = lernkarten.filter((karte) => karte.kategorieId === kategorie.id);
 
   if (route.view === "lernkarten") {
-    app.innerHTML = renderLernkartenListeView(kategorie, karten);
+    app.innerHTML = renderLernkartenListeView(kategorie, karten, sprache);
     return;
   }
 
   if (route.view === "quiz") {
-    if (!quizState || quizState.kategorieId !== kategorie.id) {
+    if (!quizState || quizState.kategorieId !== kategorie.id || quizState.sprache !== sprache) {
       quizState = {
         kategorieId: kategorie.id,
-        fragen: erzeugeQuizFragen(karten),
+        sprache,
+        fragen: erzeugeQuizFragen(karten, sprache),
         index: 0,
         score: 0,
         ausgewaehlt: null,
@@ -72,7 +77,12 @@ function render(): void {
     }
 
     if (quizState.index >= quizState.fragen.length) {
-      app.innerHTML = renderQuizErgebnisView(kategorie, quizState.score, quizState.fragen.length);
+      app.innerHTML = renderQuizErgebnisView(
+        kategorie,
+        quizState.score,
+        quizState.fragen.length,
+        sprache,
+      );
     } else {
       app.innerHTML = renderQuizView(
         kategorie,
@@ -80,6 +90,7 @@ function render(): void {
         quizState.index,
         quizState.fragen.length,
         quizState.ausgewaehlt,
+        sprache,
       );
     }
     return;
@@ -92,7 +103,7 @@ function render(): void {
     aktuelleKarteKey = key;
   }
 
-  app.innerHTML = renderKarteView(kategorie, karten, index, flipped);
+  app.innerHTML = renderKarteView(kategorie, karten, index, flipped, sprache);
   attachKarteInteraktion(app, {
     onFlip: () => {
       flipped = !flipped;
@@ -112,7 +123,7 @@ app?.addEventListener("click", (event) => {
   const target = (event.target as HTMLElement).closest<HTMLElement>("[data-action]");
   if (!target) return;
 
-  const { action, kategorieId, index, antwortIndex } = target.dataset;
+  const { action, kategorieId, index, antwortIndex, sprache } = target.dataset;
 
   switch (action) {
     case "open-kategorie":
@@ -156,6 +167,12 @@ app?.addEventListener("click", (event) => {
     case "quiz-verlassen":
       quizState = null;
       if (kategorieId) navigate({ view: "lernkarten", kategorieId });
+      break;
+    case "set-sprache":
+      if (sprache === "de" || sprache === "en" || sprache === "es") {
+        setSprache(sprache);
+        render();
+      }
       break;
   }
 });

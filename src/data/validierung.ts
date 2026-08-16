@@ -13,6 +13,14 @@ const PFLICHTFELDER_LERNKARTE: (keyof Lernkarte)[] = [
   "wannVerwendet",
 ];
 
+const UEBERSETZBARE_LERNKARTEN_FELDER = [
+  "begriff",
+  "kurzerklaerung",
+  "erklaerung",
+  "beispiel",
+  "wannVerwendet",
+] as const;
+
 function istLeer(wert: string | undefined | null): boolean {
   return !wert || wert.trim().length === 0;
 }
@@ -48,6 +56,12 @@ export function validiereLerndaten(
     if (typeof kategorie.reihenfolge !== "number" || Number.isNaN(kategorie.reihenfolge)) {
       fehler.push(`Kategorie "${kategorie.id}" hat keine gültige Reihenfolge.`);
     }
+
+    for (const [sprache, uebersetzung] of Object.entries(kategorie.uebersetzungen ?? {})) {
+      if (istLeer(uebersetzung.titel) || istLeer(uebersetzung.beschreibung)) {
+        fehler.push(`Kategorie "${kategorie.id}" hat eine unvollständige Übersetzung ("${sprache}").`);
+      }
+    }
   }
 
   const lernkartenIds = new Set<string>();
@@ -71,6 +85,16 @@ export function validiereLerndaten(
       const wert = karte[feld];
       if (typeof wert !== "string" || istLeer(wert)) {
         fehler.push(`Lernkarte "${karte.id}" fehlt Pflichtfeld "${feld}".`);
+      }
+    }
+
+    for (const [sprache, uebersetzung] of Object.entries(karte.uebersetzungen ?? {})) {
+      for (const feld of UEBERSETZBARE_LERNKARTEN_FELDER) {
+        if (istLeer(uebersetzung[feld])) {
+          fehler.push(
+            `Lernkarte "${karte.id}" hat eine unvollständige Übersetzung ("${sprache}", Feld "${feld}").`,
+          );
+        }
       }
     }
   }

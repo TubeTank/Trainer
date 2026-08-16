@@ -18,6 +18,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "📦",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-clone", "lk-working-tree"],
+    uebersetzungen: {
+      en: {
+        begriff: "Repository",
+        kurzerklaerung:
+          "A repository (or “repo” for short) is the entire project folder, including its complete history of changes.",
+        erklaerung:
+          "Think of a repository as a filing cabinet that holds not just the current version of every document, but every earlier version too – complete and searchable. Technically, it's a folder that contains a hidden .git subfolder alongside your actual files. That's where Git stores all the information about commits, branches, and history.",
+        beispiel:
+          "A team is building a website. The entire project – HTML, CSS, images, and every change ever saved to them – lives in a repository, hosted for example on GitHub.",
+        wannVerwendet:
+          "Right at the start of a project: you either create a new repository or clone an existing one before any actual work begins.",
+      },
+      es: {
+        begriff: "Repository",
+        kurzerklaerung:
+          "Un repositorio (o “repo”, para abreviar) es la carpeta completa del proyecto, incluyendo todo su historial de cambios.",
+        erklaerung:
+          "Imagina un repositorio como un archivador que guarda no solo la versión actual de cada documento, sino también todas las versiones anteriores, de forma completa y consultable. Técnicamente es una carpeta que contiene, además de los archivos reales, una subcarpeta oculta llamada .git. Ahí es donde Git guarda toda la información sobre commits, branches y el historial.",
+        beispiel:
+          "Un equipo está desarrollando un sitio web. Todo el proyecto –HTML, CSS, imágenes y cada cambio guardado alguna vez– se encuentra en un repositorio alojado, por ejemplo, en GitHub.",
+        wannVerwendet:
+          "Justo al comienzo de un proyecto: se crea un nuevo repositorio o se clona uno existente antes de empezar a trabajar.",
+      },
+    },
   },
   {
     id: "lk-commit",
@@ -35,6 +59,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "📸",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-staging-area", "lk-working-tree"],
+    uebersetzungen: {
+      en: {
+        begriff: "Commit",
+        kurzerklaerung:
+          "A commit is a saved snapshot of the project at a specific point in time, labeled with a description.",
+        erklaerung:
+          "A commit is like a photo you take of a room before you keep tidying up – you can always go back to that exact moment later. Every commit gets a unique ID and a message explaining what changed and why.",
+        beispiel:
+          "After fixing a login bug, a developer creates a commit with the message “Fix: login fails when the password field is empty.”",
+        wannVerwendet:
+          "Whenever a meaningful, self-contained piece of work is finished – often several times a day.",
+      },
+      es: {
+        begriff: "Commit",
+        kurzerklaerung:
+          "Un commit es una instantánea guardada del proyecto en un momento determinado, acompañada de una descripción.",
+        erklaerung:
+          "Un commit es como una foto que tomas del estado de una habitación antes de seguir ordenando: siempre puedes volver a ese momento más adelante. Cada commit recibe un identificador único y un mensaje que explica qué cambió y por qué.",
+        beispiel:
+          "Después de corregir un error de inicio de sesión, un desarrollador crea un commit con el mensaje “Fix: el login falla si el campo de contraseña está vacío”.",
+        wannVerwendet:
+          "Cada vez que se completa un paso de trabajo con sentido propio y bien delimitado, a menudo varias veces al día.",
+      },
+    },
   },
   {
     id: "lk-branch",
@@ -52,6 +100,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "🌿",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-commit"],
+    uebersetzungen: {
+      en: {
+        begriff: "Branch",
+        kurzerklaerung:
+          "A branch is an independent line of development within the same repository.",
+        erklaerung:
+          "Picture a branch as a side path that splits off from the main trail: you can try things out or build a new feature there without touching the main trail (usually called “main”). Later, the side path can be merged back into the main one.",
+        beispiel:
+          "A developer creates the branch “feature/dark-mode” to build a dark mode, while the rest of the team keeps working undisturbed on the main branch.",
+        wannVerwendet:
+          "As soon as you start working on a new feature, an experiment, or a bug fix that shouldn't put the stable main version at risk.",
+      },
+      es: {
+        begriff: "Branch",
+        kurzerklaerung:
+          "Un branch es una línea de desarrollo independiente dentro del mismo repositorio.",
+        erklaerung:
+          "Puedes imaginar un branch como un sendero secundario que se separa del camino principal: allí puedes probar cosas o desarrollar una nueva función sin tocar el camino principal (normalmente llamado “main”). Más adelante, ese sendero secundario se puede fusionar de nuevo con el principal.",
+        beispiel:
+          "Una desarrolladora crea el branch “feature/modo-oscuro” para construir un modo oscuro, mientras el resto del equipo sigue trabajando sin interrupciones en el branch principal.",
+        wannVerwendet:
+          "En cuanto se empieza a trabajar en una nueva función, un experimento o una corrección de errores que no debe poner en riesgo la versión principal estable.",
+      },
+    },
   },
   {
     id: "lk-push",
@@ -69,6 +141,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "⬆️",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-commit", "lk-pull"],
+    uebersetzungen: {
+      en: {
+        begriff: "Push",
+        kurzerklaerung:
+          "Push uploads your locally saved commits to a remote server (e.g. GitHub) so others can see them.",
+        erklaerung:
+          "Push is like uploading updated documents to a shared cloud folder: only once they're uploaded can your colleagues see the new version. Without a push, commits stay on your own computer only.",
+        beispiel:
+          "After three local commits, a developer pushes the changes to GitHub so they can be reviewed in a pull request.",
+        wannVerwendet:
+          "After one or more commits have been made locally and need to be shared with the team or the central server.",
+      },
+      es: {
+        begriff: "Push",
+        kurzerklaerung:
+          "Push envía los commits guardados localmente a un servidor remoto (por ejemplo, GitHub) para que otros puedan verlos.",
+        erklaerung:
+          "Push es como subir documentos actualizados a una carpeta compartida en la nube: solo cuando se suben, los compañeros pueden ver la nueva versión. Sin un push, los commits se quedan únicamente en tu propio ordenador.",
+        beispiel:
+          "Tras tres commits locales, un desarrollador sube sus cambios a GitHub mediante un push para que puedan revisarse en un pull request.",
+        wannVerwendet:
+          "Después de crear uno o varios commits localmente, cuando se quiere compartirlos con el equipo o con el servidor central.",
+      },
+    },
   },
   {
     id: "lk-pull",
@@ -86,6 +182,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "⬇️",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-fetch", "lk-push"],
+    uebersetzungen: {
+      en: {
+        begriff: "Pull",
+        kurzerklaerung:
+          "Pull fetches new changes from the remote server and merges them directly into your local working copy.",
+        erklaerung:
+          "Pull is like downloading the latest version of a shared document while automatically merging in your own pending changes. Behind the scenes, Git combines two steps: fetch (download) and merge (combine).",
+        beispiel:
+          "Before continuing work in the morning, a developer does a pull to get the changes colleagues made overnight.",
+        wannVerwendet:
+          "At the start of the workday, or before starting new changes of your own, to make sure you're up to date.",
+      },
+      es: {
+        begriff: "Pull",
+        kurzerklaerung:
+          "Pull descarga los cambios nuevos del servidor remoto y los incorpora directamente a tu copia de trabajo local.",
+        erklaerung:
+          "Pull es como descargar la última versión de un documento compartido y, al mismo tiempo, incorporar tus propios cambios pendientes. Por detrás, Git combina dos pasos: fetch (descargar) y merge (fusionar).",
+        beispiel:
+          "Antes de seguir trabajando por la mañana, un desarrollador hace un pull para incorporar los cambios que sus compañeros subieron durante la noche.",
+        wannVerwendet:
+          "Al comienzo de la jornada laboral, o antes de empezar con nuevos cambios propios, para asegurarte de estar al día.",
+      },
+    },
   },
   {
     id: "lk-fetch",
@@ -103,6 +223,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "📥",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-pull"],
+    uebersetzungen: {
+      en: {
+        begriff: "Fetch",
+        kurzerklaerung:
+          "Fetch downloads new changes from the remote server without merging them into your own working copy.",
+        erklaerung:
+          "Fetch is like collecting the new mail from your mailbox without opening and dealing with the letters yet: you can see there's something new, but you decide yourself when and how to deal with it. That's what sets fetch apart from pull, which applies the changes right away.",
+        beispiel:
+          "A developer runs a fetch to see which new commits are on the server, before deciding whether to bring them into their own branch yet.",
+        wannVerwendet:
+          "When you want to carefully check what's changed remotely before merging it with your own work.",
+      },
+      es: {
+        begriff: "Fetch",
+        kurzerklaerung:
+          "Fetch descarga los cambios nuevos del servidor remoto sin mezclarlos con tu propia copia de trabajo.",
+        erklaerung:
+          "Fetch es como recoger el correo nuevo del buzón sin abrir ni gestionar todavía las cartas: te enteras de que hay novedades, pero decides tú cuándo y cómo incorporarlas. Eso es lo que diferencia a fetch de pull, que aplica los cambios de inmediato.",
+        beispiel:
+          "Un desarrollador hace un fetch para ver qué commits nuevos hay en el servidor, antes de decidir si quiere incorporarlos ya a su propio branch.",
+        wannVerwendet:
+          "Cuando quieres comprobar con calma qué ha cambiado en el remoto antes de fusionarlo con tu propio trabajo.",
+      },
+    },
   },
   {
     id: "lk-clone",
@@ -120,6 +264,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "🧬",
     schwierigkeit: "einfach",
     relatedTerms: ["lk-repository"],
+    uebersetzungen: {
+      en: {
+        begriff: "Clone",
+        kurzerklaerung:
+          "Clone creates a complete local copy of an existing repository, including its entire history.",
+        erklaerung:
+          "Clone is like copying an entire filing folder from the archive into your own office – including every old record, not just the current state. Afterwards you have your own independent, local working copy to work with.",
+        beispiel:
+          "A new employee clones the project repository from GitHub onto their laptop so they can work on the code locally.",
+        wannVerwendet:
+          "Once, at the very start, when you want to start contributing to an already existing project.",
+      },
+      es: {
+        begriff: "Clone",
+        kurzerklaerung:
+          "Clone crea una copia local completa de un repositorio existente, incluyendo todo su historial.",
+        erklaerung:
+          "Clone es como copiar por completo una carpeta de archivo del almacén a tu propia oficina, incluyendo todos los expedientes antiguos, no solo el estado actual. Después tienes tu propia copia de trabajo local e independiente con la que trabajar.",
+        beispiel:
+          "Un nuevo empleado clona el repositorio del proyecto desde GitHub a su portátil para poder trabajar en el código de forma local.",
+        wannVerwendet:
+          "Una sola vez al principio, cuando quieres empezar a colaborar en un proyecto ya existente.",
+      },
+    },
   },
   {
     id: "lk-working-tree",
@@ -136,6 +304,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "🗂️",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-staging-area", "lk-commit"],
+    uebersetzungen: {
+      en: {
+        begriff: "Working Tree",
+        kurzerklaerung:
+          "The working tree (working directory) is the visible folder containing the files you're actually working on right now.",
+        erklaerung:
+          "Think of the working tree as the desk where the documents you're currently writing lie – as opposed to the filing cabinet (the repository), where completed versions are already archived. Changes in the working tree stay purely local until they're saved through the staging area and a commit.",
+        beispiel:
+          "A developer opens a file in their editor and changes a function. That change only exists in the working tree at first, until it's committed.",
+        wannVerwendet:
+          "While you're actually editing files, before anything has been staged or committed.",
+      },
+      es: {
+        begriff: "Working Tree",
+        kurzerklaerung:
+          "El working tree (directorio de trabajo) es la carpeta visible con los archivos en los que realmente se está trabajando en este momento.",
+        erklaerung:
+          "Puedes imaginar el working tree como el escritorio donde están los documentos en los que estás escribiendo, a diferencia del archivador (el repositorio), donde ya se guardan las versiones terminadas. Los cambios en el working tree solo son visibles localmente hasta que se guardan mediante la staging area y un commit.",
+        beispiel:
+          "Un desarrollador abre un archivo en su editor y modifica una función. Ese cambio existe, de momento, solo en el working tree, hasta que se hace commit.",
+        wannVerwendet:
+          "Durante la edición real de los archivos, antes de que se haya hecho staging o commit de nada.",
+      },
+    },
   },
   {
     id: "lk-staging-area",
@@ -153,6 +345,30 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "🧺",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-working-tree", "lk-commit"],
+    uebersetzungen: {
+      en: {
+        begriff: "Staging Area",
+        kurzerklaerung:
+          "The staging area (also called the “index”) is a holding space where you choose which changes will go into the next commit.",
+        erklaerung:
+          "The staging area works like a shopping cart when you buy something online: you deliberately place the items you actually want to buy into it before checking out. In the same way, you pick out exactly which changes from the working tree should go into the next commit.",
+        beispiel:
+          "A developer has changed two files but only wants to commit one of them. They add just that one file to the staging area before creating the commit.",
+        wannVerwendet:
+          "Between editing files and the actual commit, to deliberately choose what gets saved.",
+      },
+      es: {
+        begriff: "Staging Area",
+        kurzerklaerung:
+          "La staging area (también llamada “index”) es un espacio intermedio donde eliges qué cambios entrarán en el próximo commit.",
+        erklaerung:
+          "La staging area funciona como el carrito de la compra en una tienda online: colocas en él, de forma deliberada, los artículos que realmente quieres comprar antes de pagar. De la misma manera, eliges de entre todos los cambios del working tree cuáles pasarán al próximo commit.",
+        beispiel:
+          "Un desarrollador ha modificado dos archivos, pero solo quiere hacer commit de uno de ellos. Añade únicamente ese archivo a la staging area antes de crear el commit.",
+        wannVerwendet:
+          "Entre la edición de los archivos y el commit propiamente dicho, para elegir con precisión qué se guarda.",
+      },
+    },
   },
   {
     id: "lk-gitignore",
@@ -169,5 +385,29 @@ export const gitGrundlagenLernkarten: Lernkarte[] = [
     icon: "🚫",
     schwierigkeit: "mittel",
     relatedTerms: ["lk-repository"],
+    uebersetzungen: {
+      en: {
+        begriff: ".gitignore",
+        kurzerklaerung:
+          "The .gitignore file defines which files and folders Git should deliberately ignore and never track.",
+        erklaerung:
+          "Think of .gitignore as a list taped to the filing cabinet stating which documents should never be filed at all – coffee-stained scribbles or temporary notes, say. This keeps the repository free of things like auto-generated build files, personal configuration files, or passwords.",
+        beispiel:
+          "A project's .gitignore contains the entry “node_modules” so the huge, auto-generated folder of dependencies never gets uploaded by accident.",
+        wannVerwendet:
+          "Right at the start of a project, and any time new kinds of generated or sensitive files show up in it.",
+      },
+      es: {
+        begriff: ".gitignore",
+        kurzerklaerung:
+          "El archivo .gitignore define qué archivos y carpetas debe ignorar Git deliberadamente y no versionar nunca.",
+        erklaerung:
+          "Puedes imaginar .gitignore como una lista pegada en el archivador que indica qué documentos no deben archivarse nunca, como notas manchadas de café o apuntes provisionales. Así el repositorio se mantiene libre de cosas como archivos de compilación generados automáticamente, configuraciones personales o contraseñas.",
+        beispiel:
+          "En un proyecto, el .gitignore contiene la entrada “node_modules” para que esa carpeta enorme y generada automáticamente con las dependencias nunca se suba por accidente.",
+        wannVerwendet:
+          "Justo al comienzo del proyecto, y siempre que aparezcan nuevos tipos de archivos generados o sensibles en él.",
+      },
+    },
   },
 ];

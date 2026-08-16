@@ -6,6 +6,14 @@
 
 export type Schwierigkeitsgrad = "einfach" | "mittel" | "schwer";
 
+/** Unterstützte Sprachen. "de" ist die Basissprache aller Inhalte. */
+export type Sprache = "de" | "en" | "es";
+
+export interface KategorieUebersetzung {
+  titel: string;
+  beschreibung: string;
+}
+
 export interface Kategorie {
   /** Stabile, eindeutige ID. Niemals über Array-Position referenzieren. */
   id: string;
@@ -15,6 +23,8 @@ export interface Kategorie {
   reihenfolge: number;
   /** Optionales Icon/Emoji für die Kategorie-Übersicht. */
   icon?: string;
+  /** Übersetzungen der deutschen Basistexte, fehlende Sprachen fallen auf Deutsch zurück. */
+  uebersetzungen?: Partial<Record<Exclude<Sprache, "de">, KategorieUebersetzung>>;
 }
 
 export interface QuizAntwort {
@@ -22,6 +32,14 @@ export interface QuizAntwort {
   id: string;
   text: string;
   istKorrekt: boolean;
+}
+
+export interface LernkarteUebersetzung {
+  begriff: string;
+  kurzerklaerung: string;
+  erklaerung: string;
+  beispiel: string;
+  wannVerwendet: string;
 }
 
 export interface Lernkarte {
@@ -42,4 +60,6 @@ export interface Lernkarte {
   icon?: string;
   schwierigkeit?: Schwierigkeitsgrad;
   quizAntworten?: QuizAntwort[];
+  /** Übersetzungen der deutschen Basistexte, fehlende Sprachen fallen auf Deutsch zurück. */
+  uebersetzungen?: Partial<Record<Exclude<Sprache, "de">, LernkarteUebersetzung>>;
 }

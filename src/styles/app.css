@@ -3,6 +3,31 @@
   text-align: center;
 }
 
+.sprach-schalter {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.sprach-button {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.sprach-button--aktiv {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #10121a;
+}
+
 .app-header h1 {
   font-size: 1.75rem;
   font-weight: 700;
