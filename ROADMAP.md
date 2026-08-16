@@ -75,7 +75,7 @@ reinem TypeScript + Vite, **kein Framework** (bestätigt).
 | # | Titel | Inhalt | Status |
 |---|-------|--------|--------|
 | A | Design-System & Dark Theme | CSS-Variablen (Farben, Typo, Abstände), dunkle Farbpalette mit ausreichendem Kontrast, mobile-first Viewport, Safe-Area-Insets für Notch/Homebar | ✅ |
-| B | Navigation & App-Struktur | Ansichten: Kategorie-Übersicht (Grid mit Icon + Titel + Fortschritt) → Lernkarten-Liste einer Kategorie → Karteikarten-Studiermodus; einfacher View-State ohne Router-Library | ⏳ |
+| B | Navigation & App-Struktur | Ansichten: Kategorie-Übersicht (Grid mit Icon + Titel + Fortschritt) → Lernkarten-Liste einer Kategorie → Karteikarten-Studiermodus; einfacher View-State ohne Router-Library | ✅ |
 | C | Karteikarten-Interaktion | Flip-Animation (Begriff vorne, Erklärung/Metapher/Beispiel hinten), Swipe links/rechts ("kann ich" / "nochmal üben") mit visuellem Feedback, Tastatur-Alternative für Desktop-Tests | ⏳ |
 | D | Lernfortschritt & Persistenz | localStorage: Status pro Karte (neu/gelernt/wiederholen), Fortschrittsbalken pro Kategorie, einfache Gesamt-Statistik | ⏳ |
 | E | Quiz-Modus | Multiple-Choice-UI mit Sofort-Feedback; **Voraussetzung:** `quizAntworten` müssen für die Karten erst als Lerninhalt nachgetragen werden (aktuell leer) | ⏳ |

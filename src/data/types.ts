@@ -13,6 +13,8 @@ export interface Kategorie {
   beschreibung: string;
   /** Anzeigereihenfolge innerhalb der Kategorie-Liste. */
   reihenfolge: number;
+  /** Optionales Icon/Emoji für die Kategorie-Übersicht. */
+  icon?: string;
 }
 
 export interface QuizAntwort {

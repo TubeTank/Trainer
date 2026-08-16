@@ -7,6 +7,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Die wichtigsten Begriffe rund um Git – das Versionskontrollsystem, mit dem Entwickler:innen Änderungen an Code nachvollziehbar und sicher verwalten.",
     reihenfolge: 1,
+    icon: "🌱",
   },
   {
     id: "kat-github-zusammenarbeit",
@@ -14,6 +15,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Wie mehrere Menschen gemeinsam an einem Git-Repository arbeiten: Remote-Server, Pull Requests, Code Review, Issues und automatisierte Prüfungen über GitHub Actions.",
     reihenfolge: 2,
+    icon: "🐙",
   },
   {
     id: "kat-kommandozeile-powershell",
@@ -21,6 +23,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Grundbegriffe rund um Terminal, Shell und PowerShell – die Text-basierte Steuerung des eigenen Rechners, die im Entwicklungsalltag ständig zum Einsatz kommt.",
     reihenfolge: 3,
+    icon: "⌨️",
   },
   {
     id: "kat-laufzeitumgebungen-sprachen",
@@ -28,6 +31,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Wie Programmiersprachen wie JavaScript/Node.js und Python tatsächlich ausgeführt werden, und wie Package Manager dabei helfen, fremden Code einzubinden.",
     reihenfolge: 4,
+    icon: "⚙️",
   },
   {
     id: "kat-libraries-abhaengigkeiten",
@@ -35,6 +39,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Wie fremder, fertiger Code über Bibliotheken eingebunden wird: package.json, Lockfiles, Versionierung (SemVer) und typische Abhängigkeitskonflikte.",
     reihenfolge: 5,
+    icon: "📦",
   },
   {
     id: "kat-entwicklungswerkzeuge",
@@ -42,6 +47,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Editor, Erweiterungen, Linter, Formatter und Debugger – die tägliche Werkzeugausstattung beim Schreiben und Prüfen von Code.",
     reihenfolge: 6,
+    icon: "🧰",
   },
   {
     id: "kat-web-grundlagen",
@@ -49,6 +55,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Wie Webseiten und Web-Anwendungen grundsätzlich funktionieren: HTML, CSS, JavaScript, das Client-Server-Modell sowie HTTP, REST und JSON.",
     reihenfolge: 7,
+    icon: "🌐",
   },
   {
     id: "kat-build-tools-bundler",
@@ -56,6 +63,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Wie aus Quellcode eine lauffähige, optimierte Anwendung entsteht – Bundler, Transpilation, Hot Reload und der TypeScript-Compiler.",
     reihenfolge: 8,
+    icon: "🏗️",
   },
   {
     id: "kat-server-hosting",
@@ -63,6 +71,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Was ein Server eigentlich ist, wie Domains und Ports zusammenspielen, und wie eine Anwendung von localhost bis zum echten Hosting kommt.",
     reihenfolge: 9,
+    icon: "🖥️",
   },
   {
     id: "kat-datenbanken-grundlagen",
@@ -70,6 +79,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Relationale und NoSQL-Datenbanken, SQL-Grundbegriffe sowie ORM und Migrationen als Brücke zwischen Datenbank und Programmcode.",
     reihenfolge: 10,
+    icon: "🗄️",
   },
   {
     id: "kat-cloud-devops-grundlagen",
@@ -77,6 +87,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Container, CI/CD-Pipelines, Infrastructure as Code und Secrets-Management – wie moderne Software zuverlässig betrieben und ausgeliefert wird.",
     reihenfolge: 11,
+    icon: "☁️",
   },
   {
     id: "kat-ki-assistenten-agentic-coding",
@@ -84,6 +95,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Grundbegriffe zu Sprachmodellen, Prompts und KI-Coding-Assistenten wie Claude Code oder Codex, die beim Programmieren aktiv mitarbeiten.",
     reihenfolge: 12,
+    icon: "🤖",
   },
   {
     id: "kat-lokale-llms",
@@ -91,6 +103,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Wie sich Sprachmodelle lokal auf dem eigenen Rechner statt in der Cloud betreiben lassen – Werkzeuge, Hardware-Anforderungen und Modellformate.",
     reihenfolge: 13,
+    icon: "🧠",
   },
   {
     id: "kat-erp-systeme",
@@ -98,6 +111,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Grundbegriffe von Unternehmenssoftware: Module, Stamm- und Bewegungsdaten, Schnittstellen, Berechtigungen und Auswertungen.",
     reihenfolge: 14,
+    icon: "🏢",
   },
   {
     id: "kat-sicherheit-gute-praxis",
@@ -105,6 +119,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Grundlegende Sicherheitsprinzipien für den Entwicklungsalltag: Rechtevergabe, Backups, Verschlüsselung und sichere Standardeinstellungen.",
     reihenfolge: 15,
+    icon: "🛡️",
   },
   {
     id: "kat-instandhaltung-elektrotechnik",
@@ -112,6 +127,7 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Grundbegriffe zu Gerätprüfungen, Wartungsplänen und Elektrotechnik sowie zur digitalen Dokumentation und Automatisierung von Wartungsdaten.",
     reihenfolge: 16,
+    icon: "🔧",
   },
   {
     id: "kat-schweissen-metallbau",
@@ -119,5 +135,6 @@ export const kategorien: Kategorie[] = [
     beschreibung:
       "Grundbegriffe zu Schweißverfahren wie WIG und MAG, gängigen Werkstoffen im Tank- und Rohrleitungsbau sowie zur Werkstatttechnik.",
     reihenfolge: 17,
+    icon: "🔥",
   },
 ];
