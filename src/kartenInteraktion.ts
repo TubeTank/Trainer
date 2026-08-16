@@ -46,7 +46,11 @@ export function attachKarteInteraktion(container: HTMLElement, handlers: KarteIn
     startX = event.clientX;
     startY = event.clientY;
     deltaX = 0;
-    wrapper.setPointerCapture(event.pointerId);
+    try {
+      wrapper.setPointerCapture(event.pointerId);
+    } catch {
+      // Pointer bereits inaktiv (z. B. schneller Multi-Touch) – Drag funktioniert auch ohne Capture weiter.
+    }
     wrapper.style.transition = "";
   });
 

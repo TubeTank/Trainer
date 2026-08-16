@@ -24,6 +24,14 @@ if (!validierung.gueltig) {
   );
 }
 
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .catch((error: unknown) => console.error("Service-Worker-Registrierung fehlgeschlagen:", error));
+  });
+}
+
 const app = document.querySelector<HTMLDivElement>("#app");
 
 let flipped = false;
