@@ -1,7 +1,8 @@
 export type Route =
   | { view: "kategorien" }
   | { view: "lernkarten"; kategorieId: string }
-  | { view: "karte"; kategorieId: string; index: number };
+  | { view: "karte"; kategorieId: string; index: number }
+  | { view: "quiz"; kategorieId: string };
 
 export function parseRoute(hash: string): Route {
   const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
@@ -12,6 +13,9 @@ export function parseRoute(hash: string): Route {
       const index = Number.parseInt(indexRaw, 10);
       return { view: "karte", kategorieId, index: Number.isFinite(index) ? index : 0 };
     }
+    if (sub === "quiz") {
+      return { view: "quiz", kategorieId };
+    }
     return { view: "lernkarten", kategorieId };
   }
 
@@ -21,6 +25,7 @@ export function parseRoute(hash: string): Route {
 export function routeToHash(route: Route): string {
   if (route.view === "kategorien") return "#/";
   if (route.view === "lernkarten") return `#/kategorie/${route.kategorieId}`;
+  if (route.view === "quiz") return `#/kategorie/${route.kategorieId}/quiz`;
   return `#/kategorie/${route.kategorieId}/karte/${route.index}`;
 }
 

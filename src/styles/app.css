@@ -147,6 +147,21 @@
   margin-bottom: var(--space-4);
 }
 
+.outline-button {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-bottom: var(--space-4);
+}
+
 .lernkarte-liste {
   list-style: none;
   margin: 0;
@@ -347,5 +362,70 @@
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: 0.85rem;
   overflow-x: auto;
+}
+
+.quiz-frage-label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.quiz-frage-begriff {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-5);
+}
+
+.quiz-optionen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.quiz-option {
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.quiz-option:disabled {
+  cursor: default;
+}
+
+.quiz-option--richtig {
+  border-color: var(--color-success);
+  background: rgba(52, 211, 153, 0.15);
+}
+
+.quiz-option--falsch {
+  border-color: var(--color-danger);
+  background: rgba(248, 113, 113, 0.15);
+}
+
+.quiz-ergebnis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: var(--space-6);
+}
+
+.quiz-ergebnis__icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-3);
+}
+
+.quiz-ergebnis h2 {
+  margin-bottom: var(--space-5);
+  font-size: 1.3rem;
 }
 

@@ -3,8 +3,15 @@ import "./styles/app.css";
 import { kategorien, lernkarten, validiereLerndaten } from "./data";
 import { setStatus } from "./fortschritt";
 import { attachKarteInteraktion, setFlipped } from "./kartenInteraktion";
+import { erzeugeQuizFragen, type QuizFrage } from "./quiz";
 import { getCurrentRoute, navigate } from "./router";
-import { renderKarteView, renderKategorienView, renderLernkartenListeView } from "./views";
+import {
+  renderKarteView,
+  renderKategorienView,
+  renderLernkartenListeView,
+  renderQuizErgebnisView,
+  renderQuizView,
+} from "./views";
 
 const validierung = validiereLerndaten(kategorien, lernkarten);
 if (!validierung.gueltig) {
@@ -19,6 +26,16 @@ const app = document.querySelector<HTMLDivElement>("#app");
 
 let flipped = false;
 let aktuelleKarteKey = "";
+
+interface QuizState {
+  kategorieId: string;
+  fragen: QuizFrage[];
+  index: number;
+  score: number;
+  ausgewaehlt: number | null;
+}
+
+let quizState: QuizState | null = null;
 
 function render(): void {
   if (!app) return;
@@ -40,6 +57,31 @@ function render(): void {
 
   if (route.view === "lernkarten") {
     app.innerHTML = renderLernkartenListeView(kategorie, karten);
+    return;
+  }
+
+  if (route.view === "quiz") {
+    if (!quizState || quizState.kategorieId !== kategorie.id) {
+      quizState = {
+        kategorieId: kategorie.id,
+        fragen: erzeugeQuizFragen(karten),
+        index: 0,
+        score: 0,
+        ausgewaehlt: null,
+      };
+    }
+
+    if (quizState.index >= quizState.fragen.length) {
+      app.innerHTML = renderQuizErgebnisView(kategorie, quizState.score, quizState.fragen.length);
+    } else {
+      app.innerHTML = renderQuizView(
+        kategorie,
+        quizState.fragen[quizState.index],
+        quizState.index,
+        quizState.fragen.length,
+        quizState.ausgewaehlt,
+      );
+    }
     return;
   }
 
@@ -70,7 +112,7 @@ app?.addEventListener("click", (event) => {
   const target = (event.target as HTMLElement).closest<HTMLElement>("[data-action]");
   if (!target) return;
 
-  const { action, kategorieId, index } = target.dataset;
+  const { action, kategorieId, index, antwortIndex } = target.dataset;
 
   switch (action) {
     case "open-kategorie":
@@ -85,6 +127,34 @@ app?.addEventListener("click", (event) => {
       navigate({ view: "kategorien" });
       break;
     case "back-to-lernkarten":
+      if (kategorieId) navigate({ view: "lernkarten", kategorieId });
+      break;
+    case "start-quiz":
+      quizState = null;
+      if (kategorieId) navigate({ view: "quiz", kategorieId });
+      break;
+    case "quiz-antwort":
+      if (quizState && quizState.ausgewaehlt === null && antwortIndex !== undefined) {
+        const gewaehlterIndex = Number(antwortIndex);
+        const frage = quizState.fragen[quizState.index];
+        quizState.ausgewaehlt = gewaehlterIndex;
+        if (frage.optionen[gewaehlterIndex]?.istKorrekt) quizState.score++;
+        render();
+      }
+      break;
+    case "quiz-weiter":
+      if (quizState) {
+        quizState.index++;
+        quizState.ausgewaehlt = null;
+        render();
+      }
+      break;
+    case "quiz-restart":
+      quizState = null;
+      render();
+      break;
+    case "quiz-verlassen":
+      quizState = null;
       if (kategorieId) navigate({ view: "lernkarten", kategorieId });
       break;
   }

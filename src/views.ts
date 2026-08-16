@@ -1,5 +1,6 @@
 import type { Kategorie, Lernkarte } from "./data/types";
 import { fortschrittFuerKarten, getStatus, type KartenFortschritt } from "./fortschritt";
+import type { QuizFrage } from "./quiz";
 
 function escapeHtml(value: string): string {
   return value
@@ -92,6 +93,9 @@ export function renderLernkartenListeView(kategorie: Kategorie, karten: Lernkart
       <button class="primary-button" type="button" data-action="open-karte" data-kategorie-id="${escapeHtml(kategorie.id)}" data-index="0">
         Karteikarten starten
       </button>
+      <button class="outline-button" type="button" data-action="start-quiz" data-kategorie-id="${escapeHtml(kategorie.id)}">
+        📝 Quiz starten
+      </button>
       <ul class="lernkarte-liste">${items}</ul>
     </main>
   `;
@@ -141,6 +145,60 @@ export function renderKarteView(
         <button class="urteil-button urteil-button--kenne" type="button" data-action="karte-swipe" data-richtung="kenne">✅ Kenne ich</button>
       </div>
       <button class="karte-zurueck-link" type="button" data-action="karte-back">‹ Vorherige Karte</button>
+    </main>
+  `;
+}
+
+export function renderQuizView(
+  kategorie: Kategorie,
+  frage: QuizFrage,
+  index: number,
+  gesamt: number,
+  ausgewaehlt: number | null,
+): string {
+  const optionen = frage.optionen
+    .map((option, i) => {
+      let klasse = "quiz-option";
+      if (ausgewaehlt !== null) {
+        if (option.istKorrekt) klasse += " quiz-option--richtig";
+        else if (i === ausgewaehlt) klasse += " quiz-option--falsch";
+      }
+      return `
+        <button class="${klasse}" type="button" data-action="quiz-antwort" data-antwort-index="${i}" ${ausgewaehlt !== null ? "disabled" : ""}>
+          ${escapeHtml(option.text)}
+        </button>
+      `;
+    })
+    .join("");
+
+  return `
+    <header class="app-header app-header--sub">
+      <button class="back-button" type="button" data-action="quiz-verlassen" data-kategorie-id="${escapeHtml(kategorie.id)}">← ${escapeHtml(kategorie.titel)}</button>
+      <p class="karte-zaehler">Frage ${index + 1} / ${gesamt}</p>
+    </header>
+    <main class="app-main">
+      <p class="quiz-frage-label">Was bedeutet</p>
+      <h2 class="quiz-frage-begriff">${escapeHtml(frage.begriff)}</h2>
+      <div class="quiz-optionen">${optionen}</div>
+      ${ausgewaehlt !== null ? `<button class="primary-button" type="button" data-action="quiz-weiter">Weiter</button>` : ""}
+    </main>
+  `;
+}
+
+export function renderQuizErgebnisView(kategorie: Kategorie, score: number, gesamt: number): string {
+  return `
+    <header class="app-header app-header--sub">
+      <button class="back-button" type="button" data-action="quiz-verlassen" data-kategorie-id="${escapeHtml(kategorie.id)}">← ${escapeHtml(kategorie.titel)}</button>
+    </header>
+    <main class="app-main quiz-ergebnis">
+      <div class="quiz-ergebnis__icon">${score === gesamt ? "🏆" : "📊"}</div>
+      <h2>Du hast ${score} von ${gesamt} richtig</h2>
+      <button class="primary-button" type="button" data-action="quiz-restart" data-kategorie-id="${escapeHtml(kategorie.id)}">
+        Nochmal versuchen
+      </button>
+      <button class="karte-zurueck-link" type="button" data-action="quiz-verlassen" data-kategorie-id="${escapeHtml(kategorie.id)}">
+        Zurück zur Liste
+      </button>
     </main>
   `;
 }
