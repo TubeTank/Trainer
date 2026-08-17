@@ -363,4 +363,246 @@ export const kiAssistentenAgenticCodingLernkarten: Lernkarte[] = [
       },
     },
   },
+  {
+    id: "lk-cursor",
+    kategorieId: KATEGORIE_ID,
+    begriff: "Cursor",
+    kurzerklaerung:
+      "Cursor ist ein eigenständiger Code-Editor auf Basis von VS Code, bei dem KI-Unterstützung von Grund auf integriert ist statt nachträglich als Erweiterung ergänzt zu werden.",
+    erklaerung:
+      "Man kann sich Cursor wie ein Auto vorstellen, bei dem der Autopilot fest verbaut ist, statt nachträglich als Zubehör eingebaut zu werden: Autovervollständigung, Chat und automatisierte Mehrdateien-Bearbeitung sind direkt Teil des Editors, nicht bloß eine Erweiterung. Cursor lässt sich dabei mit verschiedenen zugrunde liegenden Sprachmodellen betreiben, etwa von Anthropic oder OpenAI.",
+    beispiel:
+      "Ein Entwickler wechselt von einem klassischen Editor zu Cursor, weil dort Autovervollständigung, Chat und automatisierte Codeänderungen direkt zusammenarbeiten, statt über mehrere separate Werkzeuge verteilt zu sein.",
+    wannVerwendet:
+      "Wenn KI-Unterstützung nicht nur gelegentlich als Zusatzwerkzeug, sondern durchgehend im gesamten Editier-Arbeitsablauf genutzt werden soll.",
+    icon: "🖱️",
+    schwierigkeit: "mittel",
+    relatedTerms: ["lk-claude-code", "lk-codex", "lk-llm"],
+    uebersetzungen: {
+      en: {
+        begriff: "Cursor",
+        kurzerklaerung:
+          "Cursor is a standalone code editor built on VS Code, with AI support built in from the ground up instead of bolted on as an extension.",
+        erklaerung:
+          "Think of Cursor like a car with the autopilot built in at the factory instead of added later as an accessory: autocomplete, chat, and automated multi-file editing are all part of the editor itself, not just an add-on. Cursor can run on different underlying language models, for example from Anthropic or OpenAI.",
+        beispiel:
+          "A developer switches from a classic editor to Cursor because autocomplete, chat, and automated code changes work together directly there, instead of being spread across several separate tools.",
+        wannVerwendet:
+          "When AI support should be woven through the entire editing workflow, not just used occasionally as a side tool.",
+      },
+      es: {
+        begriff: "Cursor",
+        kurzerklaerung:
+          "Cursor es un editor de código independiente basado en VS Code, en el que el soporte de IA está integrado desde el principio en lugar de añadirse después como una extensión.",
+        erklaerung:
+          "Puedes imaginar Cursor como un coche con el piloto automático instalado de fábrica en lugar de añadido después como accesorio: el autocompletado, el chat y la edición automatizada de varios archivos forman parte del propio editor, no son un simple complemento. Cursor puede funcionar con distintos modelos de lenguaje subyacentes, por ejemplo de Anthropic u OpenAI.",
+        beispiel:
+          "Un desarrollador cambia de un editor clásico a Cursor porque allí el autocompletado, el chat y los cambios de código automatizados trabajan juntos directamente, en lugar de estar repartidos en varias herramientas separadas.",
+        wannVerwendet:
+          "Cuando el soporte de IA debe estar presente en todo el flujo de trabajo de edición, y no usarse solo ocasionalmente como herramienta adicional.",
+      },
+    },
+  },
+  {
+    id: "lk-cursor-tab",
+    kategorieId: KATEGORIE_ID,
+    begriff: "Tab (Cursor-Autovervollständigung)",
+    kurzerklaerung:
+      "Tab ist Cursors Autovervollständigungsfunktion, die oft mehrere Zeilen oder ganze Änderungen vorschlägt, statt nur einzelne Wörter zu ergänzen.",
+    erklaerung:
+      "Man kann sich Tab wie einen aufmerksamen Assistenten vorstellen, der nicht nur das aktuelle Wort zu Ende schreibt, sondern schon erahnt, was als Nächstes im gesamten Absatz folgen soll – inklusive naheliegender Änderungen an anderen Stellen der Datei. Mit der Tab-Taste wird der Vorschlag einfach übernommen.",
+    beispiel:
+      "Nachdem eine Funktion umbenannt wurde, schlägt Tab automatisch vor, auch alle zugehörigen Aufrufe an anderer Stelle in derselben Datei entsprechend anzupassen.",
+    wannVerwendet:
+      "Beim laufenden Schreiben von Code, wenn sich wiederholende oder naheliegende Änderungen schnell übernehmen lassen sollen.",
+    befehl: "Tab",
+    icon: "⇥",
+    schwierigkeit: "einfach",
+    relatedTerms: ["lk-cursor"],
+    uebersetzungen: {
+      en: {
+        begriff: "Tab (Cursor Autocomplete)",
+        kurzerklaerung:
+          "Tab is Cursor's autocomplete feature, which often suggests multiple lines or whole changes instead of just completing single words.",
+        erklaerung:
+          "Think of Tab as an attentive assistant who doesn't just finish the current word, but already anticipates what should come next in the whole paragraph — including related changes elsewhere in the file. Pressing Tab simply accepts the suggestion.",
+        beispiel:
+          "After a function is renamed, Tab automatically suggests updating all related calls elsewhere in the same file accordingly.",
+        wannVerwendet:
+          "While actively writing code, when repetitive or closely related changes should be accepted quickly.",
+      },
+      es: {
+        begriff: "Tab (autocompletado de Cursor)",
+        kurzerklaerung:
+          "Tab es la función de autocompletado de Cursor, que a menudo sugiere varias líneas o cambios completos en lugar de solo terminar palabras sueltas.",
+        erklaerung:
+          "Puedes imaginar Tab como un asistente atento que no solo termina la palabra actual, sino que ya intuye lo que vendrá después en todo el párrafo, incluidos cambios relacionados en otras partes del archivo. Con la tecla Tab simplemente se acepta la sugerencia.",
+        beispiel:
+          "Después de renombrar una función, Tab sugiere automáticamente actualizar también todas las llamadas relacionadas en otras partes del mismo archivo.",
+        wannVerwendet:
+          "Mientras se escribe código, cuando se quieren aceptar rápidamente cambios repetitivos o muy relacionados entre sí.",
+      },
+    },
+  },
+  {
+    id: "lk-cursor-cmd-k",
+    kategorieId: KATEGORIE_ID,
+    begriff: "Cmd+K (Inline Edit)",
+    kurzerklaerung:
+      "Cmd+K öffnet in Cursor ein Eingabefeld, mit dem sich markierter Code per Textanweisung gezielt umschreiben lässt, ohne den Chat zu verlassen.",
+    erklaerung:
+      "Man kann sich Cmd+K wie einen kurzen Zuruf an einen Kollegen vorstellen, der genau die markierte Stelle überarbeitet, statt gleich das ganze Dokument neu zu schreiben. Statt manuell zu tippen, beschreibt man die gewünschte Änderung in Worten und bekommt einen konkreten Änderungsvorschlag (Diff) zum Bestätigen.",
+    beispiel:
+      "Ein Entwickler markiert eine Funktion, drückt Cmd+K und schreibt „Fehlerbehandlung ergänzen“ – Cursor schlägt daraufhin die passende Änderung direkt an dieser Stelle vor.",
+    wannVerwendet:
+      "Bei gezielten, lokal begrenzten Änderungen an einer bestimmten Code-Stelle, ohne eine längere Chat-Unterhaltung zu beginnen.",
+    befehl: "Cmd+K / Ctrl+K",
+    icon: "⌨️",
+    schwierigkeit: "mittel",
+    relatedTerms: ["lk-cursor", "lk-prompt"],
+    uebersetzungen: {
+      en: {
+        begriff: "Cmd+K (Inline Edit)",
+        kurzerklaerung:
+          "Cmd+K opens an input field in Cursor that lets you rewrite selected code with a text instruction, without leaving for the chat.",
+        erklaerung:
+          "Think of Cmd+K as a quick word to a colleague who reworks exactly the highlighted spot instead of rewriting the whole document. Instead of typing manually, you describe the desired change in words and get a concrete diff to confirm.",
+        beispiel:
+          'A developer selects a function, presses Cmd+K, and types "add error handling" – Cursor then suggests the matching change right at that spot.',
+        wannVerwendet:
+          "For targeted, locally scoped changes to a specific piece of code, without starting a longer chat conversation.",
+      },
+      es: {
+        begriff: "Cmd+K (edición en línea)",
+        kurzerklaerung:
+          "Cmd+K abre en Cursor un campo de entrada con el que se puede reescribir el código seleccionado mediante una instrucción de texto, sin salir al chat.",
+        erklaerung:
+          "Puedes imaginar Cmd+K como pedirle algo rápido a un compañero, que retoca exactamente la parte marcada en lugar de reescribir todo el documento. En vez de escribir manualmente, describes el cambio deseado con palabras y obtienes una propuesta de cambio (diff) concreta para confirmar.",
+        beispiel:
+          "Un desarrollador selecciona una función, pulsa Cmd+K y escribe «añadir manejo de errores»; Cursor propone entonces el cambio correspondiente justo en ese punto.",
+        wannVerwendet:
+          "Para cambios puntuales y localizados en un punto concreto del código, sin iniciar una conversación de chat más larga.",
+      },
+    },
+  },
+  {
+    id: "lk-cursor-agent-modus",
+    kategorieId: KATEGORIE_ID,
+    begriff: "Composer / Agent-Modus",
+    kurzerklaerung:
+      "Composer bzw. der Agent-Modus lässt Cursor selbstständig zusammenhängende Änderungen über mehrere Dateien hinweg planen und umsetzen.",
+    erklaerung:
+      "Man kann sich das wie die Beauftragung eines erfahrenen Kollegen vorstellen, der eine ganze Aufgabe eigenständig übernimmt: Statt jede einzelne Datei selbst zu bearbeiten, beschreibt man das gewünschte Ergebnis, und der Agent plant die nötigen Schritte, ändert mehrere Dateien und kann Zwischenergebnisse sogar selbst testen.",
+    beispiel:
+      "Eine Entwicklerin beschreibt „Füge eine Suchfunktion mit passendem Test hinzu“, und der Agent-Modus erstellt daraufhin selbstständig die nötigen Änderungen in mehreren Dateien des Projekts.",
+    wannVerwendet:
+      "Bei größeren, zusammenhängenden Aufgaben, die mehrere Dateien betreffen und nicht mit einer einzelnen, punktuellen Änderung erledigt sind.",
+    icon: "🤖",
+    schwierigkeit: "schwer",
+    relatedTerms: ["lk-cursor", "lk-ki-agent", "lk-tool-use"],
+    uebersetzungen: {
+      en: {
+        begriff: "Composer / Agent Mode",
+        kurzerklaerung:
+          "Composer, or agent mode, lets Cursor independently plan and carry out related changes across multiple files.",
+        erklaerung:
+          "Think of it like handing a whole task to an experienced colleague: instead of editing every file yourself, you describe the desired outcome, and the agent plans the necessary steps, changes multiple files, and can even test intermediate results itself.",
+        beispiel:
+          'A developer describes "add a search feature with a matching test," and agent mode then independently makes the necessary changes across several files in the project.',
+        wannVerwendet:
+          "For larger, interconnected tasks spanning multiple files that go beyond a single, targeted change.",
+      },
+      es: {
+        begriff: "Composer / Modo agente",
+        kurzerklaerung:
+          "Composer, o el modo agente, permite que Cursor planifique y lleve a cabo por su cuenta cambios relacionados en varios archivos.",
+        erklaerung:
+          "Puedes imaginarlo como encargarle toda una tarea a un compañero con experiencia: en lugar de editar tú mismo cada archivo, describes el resultado deseado, y el agente planifica los pasos necesarios, modifica varios archivos e incluso puede probar por sí mismo los resultados intermedios.",
+        beispiel:
+          "Una desarrolladora describe «añade una función de búsqueda con su prueba correspondiente», y el modo agente realiza entonces por sí solo los cambios necesarios en varios archivos del proyecto.",
+        wannVerwendet:
+          "Para tareas más grandes y relacionadas entre sí que afectan a varios archivos y van más allá de un cambio puntual.",
+      },
+    },
+  },
+  {
+    id: "lk-cursor-chat",
+    kategorieId: KATEGORIE_ID,
+    begriff: "Chat (in Cursor)",
+    kurzerklaerung:
+      "Der Chat in Cursor ist ein Gesprächsfenster im Editor, über das Fragen zum Code gestellt oder Erklärungen angefordert werden können, ohne den Editor zu verlassen.",
+    erklaerung:
+      "Man kann sich den Chat wie einen erfahrenen Kollegen im Nebenraum vorstellen, den man jederzeit kurz etwas fragen kann, ohne den eigenen Schreibtisch zu verlassen. Der Chat kennt dabei automatisch den Kontext des geöffneten Projekts und kann gezielt auf einzelne Dateien oder Codestellen verweisen.",
+    beispiel:
+      "Ein Entwickler fragt im Chat „Warum schlägt dieser Test fehl?“ und bekommt eine Erklärung, die sich direkt auf den betroffenen Code im Projekt bezieht.",
+    wannVerwendet:
+      "Bei Verständnisfragen zum bestehenden Code oder wenn ein Vorgehen erst besprochen werden soll, bevor eine Änderung vorgenommen wird.",
+    icon: "💬",
+    schwierigkeit: "einfach",
+    relatedTerms: ["lk-cursor", "lk-prompt"],
+    uebersetzungen: {
+      en: {
+        begriff: "Chat (in Cursor)",
+        kurzerklaerung:
+          "Chat in Cursor is a conversation panel in the editor for asking questions about the code or requesting explanations, without leaving the editor.",
+        erklaerung:
+          "Think of chat as an experienced colleague in the next room you can quickly ask something without leaving your own desk. The chat automatically knows the context of the open project and can point to specific files or code locations.",
+        beispiel:
+          'A developer asks in chat, "Why is this test failing?" and gets an explanation that refers directly to the affected code in the project.',
+        wannVerwendet:
+          "For questions about existing code, or when an approach needs discussing before making a change.",
+      },
+      es: {
+        begriff: "Chat (en Cursor)",
+        kurzerklaerung:
+          "El chat de Cursor es una ventana de conversación en el editor con la que se pueden hacer preguntas sobre el código o pedir explicaciones sin salir del editor.",
+        erklaerung:
+          "Puedes imaginar el chat como un compañero con experiencia en la sala de al lado, al que puedes preguntarle algo rápido sin levantarte de tu escritorio. El chat conoce automáticamente el contexto del proyecto abierto y puede referirse a archivos o partes concretas del código.",
+        beispiel:
+          "Un desarrollador pregunta en el chat «¿Por qué falla esta prueba?» y recibe una explicación que hace referencia directa al código afectado en el proyecto.",
+        wannVerwendet:
+          "Para dudas sobre el código existente, o cuando conviene comentar un enfoque antes de hacer un cambio.",
+      },
+    },
+  },
+  {
+    id: "lk-cursor-rules",
+    kategorieId: KATEGORIE_ID,
+    begriff: "Cursor Rules",
+    kurzerklaerung:
+      "Cursor Rules sind projektspezifische Anweisungen, die festlegen, wie sich die KI-Funktionen von Cursor in einem bestimmten Projekt verhalten sollen.",
+    erklaerung:
+      "Man kann sich Cursor Rules wie ein Einarbeitungsdokument für neue Mitarbeitende vorstellen: Statt bei jeder Anfrage erneut zu erklären, welche Konventionen gelten, werden diese Regeln einmal hinterlegt und danach automatisch bei jeder KI-Anfrage im Projekt berücksichtigt.",
+    beispiel:
+      "Ein Team hinterlegt in seinen Cursor Rules, dass alle Funktionen auf Englisch benannt und mit Tests versehen werden sollen, damit sich der Agent-Modus automatisch daran hält.",
+    wannVerwendet:
+      "Wenn wiederkehrende projektspezifische Vorgaben (Codestil, Architektur, verbotene Muster) nicht bei jeder einzelnen Anfrage erneut erklärt werden sollen.",
+    icon: "📋",
+    schwierigkeit: "mittel",
+    relatedTerms: ["lk-cursor", "lk-system-prompt"],
+    uebersetzungen: {
+      en: {
+        begriff: "Cursor Rules",
+        kurzerklaerung:
+          "Cursor Rules are project-specific instructions that define how Cursor's AI features should behave within a given project.",
+        erklaerung:
+          "Think of Cursor Rules as an onboarding document for new hires: instead of re-explaining the conventions with every request, these rules are stored once and then automatically applied to every AI request in the project.",
+        beispiel:
+          "A team stores in its Cursor Rules that all functions should be named in English and come with tests, so agent mode automatically follows this.",
+        wannVerwendet:
+          "When recurring project-specific requirements (code style, architecture, forbidden patterns) shouldn't need to be re-explained with every single request.",
+      },
+      es: {
+        begriff: "Cursor Rules",
+        kurzerklaerung:
+          "Cursor Rules son instrucciones específicas del proyecto que definen cómo deben comportarse las funciones de IA de Cursor dentro de un proyecto concreto.",
+        erklaerung:
+          "Puedes imaginar las Cursor Rules como un documento de incorporación para nuevos empleados: en lugar de volver a explicar las convenciones en cada solicitud, estas reglas se guardan una vez y luego se aplican automáticamente a cada solicitud de IA en el proyecto.",
+        beispiel:
+          "Un equipo guarda en sus Cursor Rules que todas las funciones deben nombrarse en inglés e incluir pruebas, para que el modo agente lo cumpla automáticamente.",
+        wannVerwendet:
+          "Cuando los requisitos específicos recurrentes de un proyecto (estilo de código, arquitectura, patrones prohibidos) no deben explicarse de nuevo en cada solicitud.",
+      },
+    },
+  },
 ];

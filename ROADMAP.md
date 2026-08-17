@@ -34,7 +34,7 @@ mit dem echten TubeTank-System.
 | 9 | `kat-server-hosting` | Server & Hosting | Was ist ein Server, localhost, Ports, Deployment, Hosting-Anbieter | ✅ |
 | 10 | `kat-datenbanken-grundlagen` | Datenbanken-Grundlagen | Relational vs. NoSQL, SQL-Basics, ORM, Migrationen | ✅ |
 | 11 | `kat-cloud-devops-grundlagen` | Cloud & DevOps-Grundlagen | CI/CD, Container/Docker, Environments, Secrets-Management | ✅ |
-| 12 | `kat-ki-assistenten-agentic-coding` | KI-Assistenten & Agentic Coding | Claude Code, Codex, Prompting, Kontextfenster, Agenten/Tools | ✅ |
+| 12 | `kat-ki-assistenten-agentic-coding` | KI-Assistenten & Agentic Coding | Claude Code, Codex, Cursor (Tab, Cmd+K, Composer/Agent-Modus, Rules), Prompting, Kontextfenster, Agenten/Tools | ✅ |
 | 13 | `kat-lokale-llms` | Lokale LLMs betreiben | Ollama/LM Studio, Modellwahl, Hardware-Anforderungen, Quantisierung | ✅ |
 | 14 | `kat-erp-systeme` | ERP-Systeme verstehen & aufbauen | Was ist ein ERP, Module, Datenmodell, Architekturentscheidungen | ✅ |
 | 15 | `kat-sicherheit-gute-praxis` | Sicherheit & gute Praxis | Secrets, Berechtigungen, Backups, sichere Defaults | ✅ |
