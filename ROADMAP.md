@@ -23,8 +23,8 @@ mit dem echten TubeTank-System.
 
 | # | ID | Kategorie | Kernthemen | Status |
 |---|----|-----------|------------|--------|
-| 1 | `kat-git-grundlagen` | Git-Grundlagen | Repository, Commit, Branch, Push/Pull/Fetch, Clone, Working Tree, Staging Area, .gitignore | ✅ |
-| 2 | `kat-github-zusammenarbeit` | GitHub & Zusammenarbeit | Remote, Pull Request, Issue, Fork, Actions/CI, Code Review | ✅ |
+| 1 | `kat-git-grundlagen` | Git-Grundlagen | Repository, Commit, Branch, Push/Pull/Fetch, Clone, Working Tree, Staging Area, .gitignore, HEAD, Tag, Rebase, Stash, Commit-Hash, Fast-Forward-Merge, Detached HEAD, git-scm.com, Git-Konfiguration | ✅ |
+| 2 | `kat-github-zusammenarbeit` | GitHub & Zusammenarbeit | Remote, Pull Request, Issue, Fork, Actions/CI, Code Review, GitHub (Plattform), GitHub CLI, Release, Draft PR, Gist, Organisation, Label, Star, Milestone | ✅ |
 | 3 | `kat-kommandozeile-powershell` | Kommandozeile & PowerShell | Terminal-Basics, PowerShell vs. Bash, Pfade, Umgebungsvariablen, häufige Befehle | ✅ |
 | 4 | `kat-laufzeitumgebungen-sprachen` | Laufzeitumgebungen & Sprachen | Node.js, Python, Compiler vs. Interpreter, Package Manager (npm/pip) | ✅ |
 | 5 | `kat-libraries-abhaengigkeiten` | Libraries & Abhängigkeiten | package.json, npm install, SemVer, Lockfiles, Dependency-Konflikte | ✅ |
