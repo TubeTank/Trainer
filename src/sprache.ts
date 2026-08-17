@@ -112,6 +112,13 @@ export interface UiTexte {
   zufallStarten: string;
   streakText: (tage: number) => string;
   kategorieAbgeschlossenLabel: string;
+  suchePlatzhalter: string;
+  sucheKeineTreffer: string;
+  eigeneAuswahlOeffnen: string;
+  eigeneAuswahlTitel: string;
+  eigeneAuswahlBeschreibung: string;
+  auswahlZusammenfassung: (anzahlThemen: number, anzahlBegriffe: number) => string;
+  eigeneAuswahlStarten: string;
 }
 
 export const UI_TEXTE: Record<Sprache, UiTexte> = {
@@ -141,6 +148,16 @@ export const UI_TEXTE: Record<Sprache, UiTexte> = {
     zufallStarten: "🔀 Zufällig starten",
     streakText: (tage) => `🔥 ${tage} ${tage === 1 ? "Tag" : "Tage"} in Folge`,
     kategorieAbgeschlossenLabel: "Kategorie abgeschlossen",
+    suchePlatzhalter: "🔍 Begriff suchen …",
+    sucheKeineTreffer: "Keine Treffer.",
+    eigeneAuswahlOeffnen: "🎯 Eigene Auswahl lernen",
+    eigeneAuswahlTitel: "Eigene Auswahl",
+    eigeneAuswahlBeschreibung: "Wähle die Themen aus, die du zusammen üben möchtest.",
+    auswahlZusammenfassung: (anzahlThemen, anzahlBegriffe) =>
+      anzahlThemen === 0
+        ? "Noch keine Themen ausgewählt."
+        : `${anzahlThemen} ${anzahlThemen === 1 ? "Thema" : "Themen"} ausgewählt · ${anzahlBegriffe} Begriffe`,
+    eigeneAuswahlStarten: "Los geht's",
   },
   en: {
     appTitel: "Trainer",
@@ -168,6 +185,16 @@ export const UI_TEXTE: Record<Sprache, UiTexte> = {
     zufallStarten: "🔀 Start shuffled",
     streakText: (tage) => `🔥 ${tage}-day streak`,
     kategorieAbgeschlossenLabel: "Category completed",
+    suchePlatzhalter: "🔍 Search for a term …",
+    sucheKeineTreffer: "No matches.",
+    eigeneAuswahlOeffnen: "🎯 Study a custom selection",
+    eigeneAuswahlTitel: "Custom Selection",
+    eigeneAuswahlBeschreibung: "Choose the topics you want to study together.",
+    auswahlZusammenfassung: (anzahlThemen, anzahlBegriffe) =>
+      anzahlThemen === 0
+        ? "No topics selected yet."
+        : `${anzahlThemen} ${anzahlThemen === 1 ? "topic" : "topics"} selected · ${anzahlBegriffe} terms`,
+    eigeneAuswahlStarten: "Let's go",
   },
   es: {
     appTitel: "Trainer",
@@ -195,5 +222,15 @@ export const UI_TEXTE: Record<Sprache, UiTexte> = {
     zufallStarten: "🔀 Empezar al azar",
     streakText: (tage) => `🔥 Racha de ${tage} ${tage === 1 ? "día" : "días"}`,
     kategorieAbgeschlossenLabel: "Categoría completada",
+    suchePlatzhalter: "🔍 Buscar un término …",
+    sucheKeineTreffer: "Sin resultados.",
+    eigeneAuswahlOeffnen: "🎯 Estudiar selección personalizada",
+    eigeneAuswahlTitel: "Selección personalizada",
+    eigeneAuswahlBeschreibung: "Elige los temas que quieres repasar juntos.",
+    auswahlZusammenfassung: (anzahlThemen, anzahlBegriffe) =>
+      anzahlThemen === 0
+        ? "Todavía no hay temas seleccionados."
+        : `${anzahlThemen} ${anzahlThemen === 1 ? "tema" : "temas"} seleccionados · ${anzahlBegriffe} términos`,
+    eigeneAuswahlStarten: "Empezar",
   },
 };

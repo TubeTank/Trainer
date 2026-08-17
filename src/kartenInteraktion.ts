@@ -16,6 +16,7 @@ export function attachKarteInteraktion(container: HTMLElement, handlers: KarteIn
   let startX = 0;
   let startY = 0;
   let deltaX = 0;
+  let deltaY = 0;
   let dragging = false;
   let pointerId: number | null = null;
 
@@ -46,6 +47,7 @@ export function attachKarteInteraktion(container: HTMLElement, handlers: KarteIn
     startX = event.clientX;
     startY = event.clientY;
     deltaX = 0;
+    deltaY = 0;
     try {
       wrapper.setPointerCapture(event.pointerId);
     } catch {
@@ -58,8 +60,13 @@ export function attachKarteInteraktion(container: HTMLElement, handlers: KarteIn
     if (!dragging || event.pointerId !== pointerId) return;
     const naeherungX = event.clientX - startX;
     const naeherungY = event.clientY - startY;
-    if (Math.abs(naeherungX) < Math.abs(naeherungY)) return;
+    if (Math.abs(naeherungX) < Math.abs(naeherungY)) {
+      // Vertikale Bewegung: Seite darf normal scrollen, keine Karten-Interaktion.
+      deltaY = naeherungY;
+      return;
+    }
     deltaX = naeherungX;
+    deltaY = naeherungY;
     wrapper.style.transform = `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
     const staerke = Math.min(Math.abs(deltaX) / SWIPE_SCHWELLE, 1);
     setLabelStaerke(deltaX > 0 ? "kenne" : "ueben", staerke);
@@ -70,10 +77,12 @@ export function attachKarteInteraktion(container: HTMLElement, handlers: KarteIn
     dragging = false;
     pointerId = null;
 
+    const gesamtBewegung = Math.max(Math.abs(deltaX), Math.abs(deltaY));
+
     if (Math.abs(deltaX) > SWIPE_SCHWELLE) {
       const urteil: Urteil = deltaX > 0 ? "kenne" : "ueben";
       fliegtWeg(urteil, () => handlers.onAdvance(urteil));
-    } else if (Math.abs(deltaX) < TAP_TOLERANZ) {
+    } else if (gesamtBewegung < TAP_TOLERANZ) {
       federZurueck();
       handlers.onFlip();
     } else {

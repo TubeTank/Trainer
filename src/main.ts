@@ -1,22 +1,26 @@
 import "./styles/base.css";
 import "./styles/app.css";
+import { getAusgewaehlteKategorien, toggleKategorieAuswahl } from "./auswahl";
 import { kategorien, lernkarten, validiereLerndaten } from "./data";
 import type { Lernkarte, Sprache } from "./data/types";
 import { setStatus } from "./fortschritt";
 import { attachKarteInteraktion, setFlipped } from "./kartenInteraktion";
 import { erzeugeQuizFragen, type QuizFrage } from "./quiz";
 import { getCurrentRoute, navigate } from "./router";
-import { getSprache, lernkarteText, setSprache } from "./sprache";
+import { getSprache, lernkarteText, setSprache, UI_TEXTE } from "./sprache";
 import { vorlesen, vorlesenStoppen } from "./sprachausgabe";
 import { aktualisiereStreak } from "./streak";
 import { mische } from "./util";
 import {
+  renderAuswahlView,
   renderKarteView,
   renderKategorienView,
   renderLernkartenListeView,
   renderQuizErgebnisView,
   renderQuizView,
 } from "./views";
+
+const AUSWAHL_KATEGORIE_ID = "auswahl";
 
 const validierung = validiereLerndaten(kategorien, lernkarten);
 if (!validierung.gueltig) {
@@ -41,6 +45,7 @@ const app = document.querySelector<HTMLDivElement>("#app");
 
 let flipped = false;
 let aktuelleKarteKey = "";
+let suchbegriff = "";
 
 let zufallsKategorieId: string | null = null;
 let zufallsKarten: Lernkarte[] = [];
@@ -64,12 +69,32 @@ function render(): void {
   const route = getCurrentRoute();
   const sprache = getSprache();
 
+  document.body.classList.toggle(
+    "feste-fusszeile-aktiv",
+    route.view === "karte" || route.view === "auswahl",
+  );
+
   if (route.view === "kategorien") {
-    app.innerHTML = renderKategorienView(kategorien, lernkarten, sprache);
+    app.innerHTML = renderKategorienView(kategorien, lernkarten, sprache, suchbegriff);
     return;
   }
 
-  const kategorie = kategorien.find((eintrag) => eintrag.id === route.kategorieId);
+  if (route.view === "auswahl") {
+    app.innerHTML = renderAuswahlView(kategorien, lernkarten, getAusgewaehlteKategorien(), sprache);
+    return;
+  }
+
+  const kategorie =
+    route.kategorieId === AUSWAHL_KATEGORIE_ID
+      ? {
+          id: AUSWAHL_KATEGORIE_ID,
+          titel: UI_TEXTE[sprache].eigeneAuswahlTitel,
+          beschreibung: "",
+          reihenfolge: 0,
+          icon: "🎯",
+        }
+      : kategorien.find((eintrag) => eintrag.id === route.kategorieId);
+
   if (!kategorie) {
     navigate({ view: "kategorien" });
     return;
@@ -147,10 +172,12 @@ app?.addEventListener("click", (event) => {
   switch (action) {
     case "open-kategorie":
       zufallsKategorieId = null;
+      suchbegriff = "";
       if (kategorieId) navigate({ view: "lernkarten", kategorieId });
       break;
     case "open-karte":
       zufallsKategorieId = null;
+      suchbegriff = "";
       if (kategorieId && index !== undefined) {
         navigate({ view: "karte", kategorieId, index: Number(index) });
       }
@@ -163,21 +190,45 @@ app?.addEventListener("click", (event) => {
         navigate({ view: "karte", kategorieId, index: 0 });
       }
       break;
+    case "open-auswahl":
+      suchbegriff = "";
+      navigate({ view: "auswahl" });
+      break;
+    case "toggle-kategorie-auswahl":
+      if (kategorieId) {
+        toggleKategorieAuswahl(kategorieId);
+        render();
+      }
+      break;
+    case "start-auswahl-lernen": {
+      const ausgewaehlt = getAusgewaehlteKategorien();
+      const pool = lernkarten.filter((karte) => ausgewaehlt.has(karte.kategorieId));
+      if (pool.length > 0) {
+        zufallsKategorieId = AUSWAHL_KATEGORIE_ID;
+        zufallsKarten = mische(pool);
+        navigate({ view: "karte", kategorieId: AUSWAHL_KATEGORIE_ID, index: 0 });
+      }
+      break;
+    }
     case "back-to-kategorien":
       zufallsKategorieId = null;
+      suchbegriff = "";
       navigate({ view: "kategorien" });
       break;
     case "back-to-lernkarten":
-      zufallsKategorieId = null;
-      if (kategorieId) navigate({ view: "lernkarten", kategorieId });
+      if (kategorieId === AUSWAHL_KATEGORIE_ID) {
+        navigate({ view: "auswahl" });
+      } else {
+        zufallsKategorieId = null;
+        if (kategorieId) navigate({ view: "lernkarten", kategorieId });
+      }
       break;
     case "karte-vorlesen":
       if (kategorieId && index !== undefined) {
-        const kategorie = kategorien.find((eintrag) => eintrag.id === kategorieId);
         const karten = lernkarten.filter((karte) => karte.kategorieId === kategorieId);
         const studienKarten = kategorieId === zufallsKategorieId ? zufallsKarten : karten;
         const karte = studienKarten[Number(index)];
-        if (kategorie && karte) {
+        if (karte) {
           const sprache = getSprache();
           const texte = lernkarteText(karte, sprache);
           vorlesen([texte.begriff, texte.kurzerklaerung, texte.erklaerung, texte.beispiel], sprache);
@@ -218,6 +269,21 @@ app?.addEventListener("click", (event) => {
         render();
       }
       break;
+  }
+});
+
+app?.addEventListener("input", (event) => {
+  const target = event.target as HTMLElement;
+  if (!(target instanceof HTMLInputElement) || !target.classList.contains("suche-eingabe")) return;
+
+  suchbegriff = target.value;
+  const cursorPos = target.selectionStart;
+  render();
+
+  const neuesInput = app.querySelector<HTMLInputElement>(".suche-eingabe");
+  if (neuesInput) {
+    neuesInput.focus();
+    if (cursorPos !== null) neuesInput.setSelectionRange(cursorPos, cursorPos);
   }
 });
 

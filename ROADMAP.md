@@ -84,6 +84,7 @@ reinem TypeScript + Vite, **kein Framework** (bestätigt).
 | H | Interaktions-Feinschliff | Streak-Zähler, Abschluss-Badge pro Kategorie, Zufalls-Modus, sanfte Übergangsanimationen | ✅ |
 | I | Politur & Barrierefreiheit | Kontrastprüfung Dark Mode, Fokus-States, Test auf echtem Handy-Viewport, Lighthouse-Check | ✅ |
 | J | Mehrsprachigkeit (DE/EN/ES) | UI-Texte und alle 156 Lernkarten + 17 Kategorien um Englisch/Spanisch ergänzt (additiv über `uebersetzungen`, Deutsch bleibt Basissprache), Sprachumschalter in der Kategorie-Übersicht, Auswahl in localStorage gespeichert | ✅ |
+| K | Bedienungsverbesserungen | Bugfix: vertikales Scrollen löste fälschlich einen Karten-Flip aus; Urteils-Buttons ("Kenne ich"/"Nochmal üben") als dauerhaft fixierte Fußleiste statt Teil des Scrollbereichs; Suchfunktion für Begriffe über alle Kategorien; individuelle Lernauswahl (mehrere Themen vorselektieren und gemischt lernen) | ✅ |
 
 ## Arbeitsweise (App-Bauplan)
 

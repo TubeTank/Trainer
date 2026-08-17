@@ -43,15 +43,88 @@ const STATUS_BADGE: Record<string, string> = {
   wiederholen: "🔁",
 };
 
+interface SucheTreffer {
+  karte: Lernkarte;
+  index: number;
+  kategorie: Kategorie;
+}
+
+function sucheKarten(
+  kategorien: Kategorie[],
+  lernkarten: Lernkarte[],
+  suchbegriff: string,
+  sprache: Sprache,
+): SucheTreffer[] {
+  const query = suchbegriff.trim().toLowerCase();
+  if (!query) return [];
+
+  const treffer: SucheTreffer[] = [];
+  for (const kategorie of kategorien) {
+    const karten = lernkarten.filter((karte) => karte.kategorieId === kategorie.id);
+    karten.forEach((karte, index) => {
+      const begriff = lernkarteText(karte, sprache).begriff;
+      if (begriff.toLowerCase().includes(query)) {
+        treffer.push({ karte, index, kategorie });
+      }
+    });
+  }
+  return treffer;
+}
+
+function renderSucheBereich(suchbegriff: string, sprache: Sprache): string {
+  const texte = UI_TEXTE[sprache];
+  return `
+    <div class="suche-bereich">
+      <input
+        class="suche-eingabe"
+        type="search"
+        inputmode="search"
+        placeholder="${escapeHtml(texte.suchePlatzhalter)}"
+        value="${escapeHtml(suchbegriff)}"
+        aria-label="${escapeHtml(texte.suchePlatzhalter)}"
+      />
+    </div>
+  `;
+}
+
+function renderSucheErgebnisse(treffer: SucheTreffer[], sprache: Sprache): string {
+  const texte = UI_TEXTE[sprache];
+  if (treffer.length === 0) {
+    return `<p class="suche-keine-treffer">${escapeHtml(texte.sucheKeineTreffer)}</p>`;
+  }
+
+  const items = treffer
+    .map(({ karte, index, kategorie }) => {
+      const karteTexte = lernkarteText(karte, sprache);
+      const kategorieTexte = kategorieText(kategorie, sprache);
+      return `
+        <li>
+          <button class="suche-ergebnis" type="button" data-action="open-karte" data-kategorie-id="${escapeHtml(kategorie.id)}" data-index="${index}">
+            <span class="suche-ergebnis__icon">${escapeHtml(karte.icon ?? "•")}</span>
+            <span class="suche-ergebnis__info">
+              <span class="suche-ergebnis__begriff">${escapeHtml(karteTexte.begriff)}</span>
+              <span class="suche-ergebnis__kategorie">${escapeHtml(kategorieTexte.titel)}</span>
+            </span>
+          </button>
+        </li>
+      `;
+    })
+    .join("");
+
+  return `<ul class="suche-ergebnisliste">${items}</ul>`;
+}
+
 export function renderKategorienView(
   kategorien: Kategorie[],
   lernkarten: Lernkarte[],
   sprache: Sprache,
+  suchbegriff: string,
 ): string {
   const texte = UI_TEXTE[sprache];
   const sortiert = [...kategorien].sort((a, b) => a.reihenfolge - b.reihenfolge);
   const gesamtFortschritt = fortschrittFuerKarten(lernkarten.map((karte) => karte.id));
   const streak = getStreak();
+  const suchTrimmt = suchbegriff.trim();
 
   const items = sortiert
     .map((kategorie) => {
@@ -73,6 +146,15 @@ export function renderKategorienView(
     })
     .join("");
 
+  const inhalt = suchTrimmt
+    ? renderSucheErgebnisse(sucheKarten(kategorien, lernkarten, suchTrimmt, sprache), sprache)
+    : `
+      <button class="outline-button" type="button" data-action="open-auswahl">
+        ${escapeHtml(texte.eigeneAuswahlOeffnen)}
+      </button>
+      <div class="kategorie-grid">${items}</div>
+    `;
+
   return `
     <header class="app-header">
       ${renderSprachSchalter(sprache)}
@@ -80,10 +162,59 @@ export function renderKategorienView(
       <p>${escapeHtml(texte.themaWaehlen)}</p>
       <p class="gesamt-fortschritt">${escapeHtml(texte.gesamtFortschritt(gesamtFortschritt.gelernt, gesamtFortschritt.gesamt))}</p>
       ${streak > 0 ? `<p class="streak-anzeige">${escapeHtml(texte.streakText(streak))}</p>` : ""}
+      ${renderSucheBereich(suchbegriff, sprache)}
     </header>
     <main class="app-main">
-      <div class="kategorie-grid">${items}</div>
+      ${inhalt}
     </main>
+  `;
+}
+
+export function renderAuswahlView(
+  kategorien: Kategorie[],
+  lernkarten: Lernkarte[],
+  ausgewaehlt: Set<string>,
+  sprache: Sprache,
+): string {
+  const texte = UI_TEXTE[sprache];
+  const sortiert = [...kategorien].sort((a, b) => a.reihenfolge - b.reihenfolge);
+  const anzahlBegriffe = lernkarten.filter((karte) => ausgewaehlt.has(karte.kategorieId)).length;
+
+  const items = sortiert
+    .map((kategorie) => {
+      const kategorieTexte = kategorieText(kategorie, sprache);
+      const anzahl = lernkarten.filter((karte) => karte.kategorieId === kategorie.id).length;
+      const aktiv = ausgewaehlt.has(kategorie.id);
+      return `
+        <li>
+          <button class="auswahl-kategorie${aktiv ? " auswahl-kategorie--aktiv" : ""}" type="button" data-action="toggle-kategorie-auswahl" data-kategorie-id="${escapeHtml(kategorie.id)}" aria-pressed="${aktiv}">
+            <span class="auswahl-kategorie__haken" aria-hidden="true">${aktiv ? "✅" : "⬜"}</span>
+            <span class="auswahl-kategorie__icon">${escapeHtml(kategorie.icon ?? "📘")}</span>
+            <span class="auswahl-kategorie__info">
+              <span class="auswahl-kategorie__titel">${escapeHtml(kategorieTexte.titel)}</span>
+              <span class="auswahl-kategorie__anzahl">${escapeHtml(texte.begriffeAnzahl(anzahl))}</span>
+            </span>
+          </button>
+        </li>
+      `;
+    })
+    .join("");
+
+  return `
+    <header class="app-header app-header--sub">
+      <button class="back-button" type="button" data-action="back-to-kategorien">${escapeHtml(texte.themenZurueck)}</button>
+      <h1>${escapeHtml(texte.eigeneAuswahlTitel)}</h1>
+      <p>${escapeHtml(texte.eigeneAuswahlBeschreibung)}</p>
+    </header>
+    <main class="app-main">
+      <ul class="auswahl-liste">${items}</ul>
+    </main>
+    <div class="karte-footer">
+      <p class="auswahl-zusammenfassung">${escapeHtml(texte.auswahlZusammenfassung(ausgewaehlt.size, anzahlBegriffe))}</p>
+      <button class="primary-button" type="button" data-action="start-auswahl-lernen" ${ausgewaehlt.size === 0 ? "disabled" : ""}>
+        ${escapeHtml(texte.eigeneAuswahlStarten)}
+      </button>
+    </div>
   `;
 }
 
@@ -182,12 +313,14 @@ export function renderKarteView(
           </div>
         </div>
       </div>
+    </main>
+    <div class="karte-footer">
       <div class="karte-aktionen">
         <button class="urteil-button urteil-button--ueben" type="button" data-action="karte-swipe" data-richtung="ueben">${escapeHtml(texte.nochmalUeben)}</button>
         <button class="urteil-button urteil-button--kenne" type="button" data-action="karte-swipe" data-richtung="kenne">${escapeHtml(texte.kenneIch)}</button>
       </div>
       <button class="karte-zurueck-link" type="button" data-action="karte-back">${escapeHtml(texte.vorherigeKarte)}</button>
-    </main>
+    </div>
   `;
 }
 
