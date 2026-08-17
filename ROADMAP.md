@@ -40,6 +40,7 @@ mit dem echten TubeTank-System.
 | 15 | `kat-sicherheit-gute-praxis` | Sicherheit & gute Praxis | Secrets, Berechtigungen, Backups, sichere Defaults | ✅ |
 | 16 | `kat-instandhaltung-elektrotechnik` | Instandhaltung & Elektrotechnik-Grundlagen | Gerätprüfungen, Wartungspläne/-abläufe, Elektrotechnik-Grundbegriffe, Dokumentation & Automatisierung von Wartungsdaten im System | ✅ |
 | 17 | `kat-schweissen-metallbau` | Schweißen & Metallbau | Schweißprozesse (v. a. WIG, MAG), Werkstoffe (Edelstahl, Kupfernickel/CuNi, Aluminium, Baustahl u. a.), Werkstatttechnik (Pressen, Bandsägen) | ✅ |
+| 18 | `kat-agent-skills-plugins` | Agent Skills & Plugins | Skill, Plugin, MCP, LSP, agentische GitHub-Integration, Claude Code Setup, Feature-Development-/Code-Review-/Security-Guidance-Skill, draw.io- und Office-/Web-App-Skills, Codex+Claude-Zusammenarbeit, projektspezifische Skills | ✅ |
 
 ## Hinweise zu Kategorie 16 & 17
 

@@ -16,6 +16,7 @@ import { erpSystemeLernkarten } from "./erp-systeme";
 import { sicherheitGutePraxisLernkarten } from "./sicherheit-gute-praxis";
 import { instandhaltungElektrotechnikLernkarten } from "./instandhaltung-elektrotechnik";
 import { schweissenMetallbauLernkarten } from "./schweissen-metallbau";
+import { agentSkillsPluginsLernkarten } from "./agent-skills-plugins";
 
 export const lernkarten: Lernkarte[] = [
   ...gitGrundlagenLernkarten,
@@ -35,4 +36,5 @@ export const lernkarten: Lernkarte[] = [
   ...sicherheitGutePraxisLernkarten,
   ...instandhaltungElektrotechnikLernkarten,
   ...schweissenMetallbauLernkarten,
+  ...agentSkillsPluginsLernkarten,
 ];

@@ -341,4 +341,24 @@ export const kategorien: Kategorie[] = [
       },
     },
   },
+  {
+    id: "kat-agent-skills-plugins",
+    titel: "Agent Skills & Plugins",
+    beschreibung:
+      "Wie KI-Coding-Agenten über Skills, Plugins, MCP und Language Server erweitert werden, und wie sie sich in bestehende GitHub-Workflows einordnen.",
+    reihenfolge: 18,
+    icon: "🧩",
+    uebersetzungen: {
+      en: {
+        titel: "Agent Skills & Plugins",
+        beschreibung:
+          "How AI coding agents get extended through skills, plugins, MCP, and language servers, and how they fit into existing GitHub workflows.",
+      },
+      es: {
+        titel: "Skills y plugins de agentes",
+        beschreibung:
+          "Cómo se amplían los agentes de código con IA mediante skills, plugins, MCP y servidores de lenguaje, y cómo encajan en los flujos de trabajo de GitHub.",
+      },
+    },
+  },
 ];
